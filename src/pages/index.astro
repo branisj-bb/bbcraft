@@ -2,45 +2,36 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="BB Craft">
-  <main class="min-h-screen bg-[url('/images/background-texture.png')] bg-cover bg-center text-center text-gray-800 font-serif">
-    <header class="flex justify-between items-center px-8 py-6">
-      <img src="/images/logo.png" alt="BB Craft logo" class="h-12" />
-      <nav>
-        <a href="/o-nas" class="text-sm uppercase tracking-wide border-b border-black hover:opacity-70">O NÁS</a>
-      </nav>
-    </header>
+<BaseLayout title="Domů">
+	<section class="text-center mt-12 mb-8">
+		<h1 class="text-lg tracking-widest uppercase mb-14">
+			Objevte kouzlo ruční práce
+		</h1>
 
-    <section class="mt-16">
-      <h1 class="text-lg tracking-wide uppercase mb-12">Objevte kouzlo ruční práce</h1>
+		<div class="grid grid-cols-2 sm:grid-cols-4 gap-6 justify-items-center">
+			{
+				[
+					{ src: "/images/kuze.png", alt: "Kůže" },
+					{ src: "/images/mech.png", alt: "Mech" },
+					{ src: "/images/vune.png", alt: "Vůně" },
+					{ src: "/images/vence.png", alt: "Věnce" },
+				].map((item) => (
+					<a
+						href={`/produkty#${item.alt.toLowerCase()}`}
+						class="group relative block w-36 sm:w-40 md:w-44 lg:w-48 h-96 overflow-hidden rounded-2xl"
+					>
+						<img
+							src={item.src}
+							alt={item.alt}
+							class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+						/>
 
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 justify-items-center px-8">
-        <div class="text-center">
-          <img src="/images/kuze.png" alt="Kůže" class="rounded-xl h-64 w-24 object-cover mx-auto mb-4" />
-          <p class="uppercase tracking-widest text-xl">KŮŽE</p>
-        </div>
-
-        <div class="text-center">
-          <img src="/images/mech.png" alt="Mech" class="rounded-xl h-64 w-24 object-cover mx-auto mb-4" />
-          <p class="uppercase tracking-widest text-xl">MECH</p>
-        </div>
-
-        <div class="text-center">
-          <img src="/images/vune.png" alt="Vůně" class="rounded-xl h-64 w-24 object-cover mx-auto mb-4" />
-          <p class="uppercase tracking-widest text-xl">VŮNĚ</p>
-        </div>
-
-        <div class="text-center">
-          <img src="/images/vence.png" alt="Věnce" class="rounded-xl h-64 w-24 object-cover mx-auto mb-4" />
-          <p class="uppercase tracking-widest text-xl">VĚNCE</p>
-        </div>
-      </div>
-    </section>
-
-    <footer class="mt-20 pb-12 text-sm">
-      <div class="border-t border-black w-3/4 mx-auto mb-4"></div>
-      <p class="uppercase tracking-wide">E-mail</p>
-      <p class="uppercase tracking-wide">Instagram</p>
-    </footer>
-  </main>
+						<p class="absolute bottom-6 left-[12%] text-black text-[22px] tracking-[0.25em] uppercase font-semibold group-hover:opacity-90 transition-opacity">
+							{item.alt}
+						</p>
+					</a>
+				))
+			}
+		</div>
+	</section>
 </BaseLayout>
