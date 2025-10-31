@@ -1,0 +1,18 @@
+---
+const { product } = Astro.props;
+---
+<a href={`/produkty/${product.slug}`} class="group block border border-neutral-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow bg-white">
+  <div class="aspect-[4/3] overflow-hidden bg-neutral-100">
+    <img
+      src={product.image}
+      alt={product.title}
+      class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+      loading="lazy"
+    />
+  </div>
+  <div class="p-4">
+    <h3 class="font-semibold text-lg mb-1">{product.title}</h3>
+    <p class="text-sm text-neutral-600 line-clamp-2">{product.description}</p>
+    <div class="mt-3 font-medium text-neutral-900">{product.price}</div>
+  </div>
+</a>

@@ -1,0 +1,18 @@
+[
+  {
+    "slug": "drevena-lampa",
+    "title": "Dřevěná lampa",
+    "price": "1 200 Kč",
+    "image": "/images/drevena-lampa.webp",
+    "buyUrl": "https://platba.example/drevena-lampa",
+    "description": "Ručně vyráběná lampa z bukového dřeva."
+  },
+  {
+    "slug": "kovovy-drzak",
+    "title": "Kovový držák",
+    "price": "450 Kč",
+    "image": "/images/kovovy-drzak.webp",
+    "buyUrl": "https://platba.example/kovovy-drzak",
+    "description": "Minimalistický držák na svíčky z černé oceli."
+  }
+]

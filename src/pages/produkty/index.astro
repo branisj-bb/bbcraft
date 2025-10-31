@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import produkty from '../../data/produkty.json';
+---
+<BaseLayout title="Produkty – BB Craft">
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold mb-8">Produkty</h1>
+    <!-- 💡 Tahle grid třída je klíčová -->
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {produkty.map(p => <ProductCard product={p} />)}
+    </div>
+  </div>
+</BaseLayout>
