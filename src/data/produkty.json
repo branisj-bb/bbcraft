@@ -1,21 +1,25 @@
 [
   {
+    "slug":"penezenka",
     "title": "Peněženka",
     "price": 1200,
     "image": "/images/produkty/penezenka.jpeg"
   },
     {
+    "slug":"popruh",
     "title": "Popruh na fotoaparát",
     "price": 450,
     "image": "/images/produkty/popruh.jpeg"
   },
   {
+    "slug":"obal",
     "title": "Obal na brýle",
     "price": 450,
     "image": "/images/produkty/obal.jpeg"
   },
 
   {
+    "slug":"magsafe",
     "title": "Magsafe držák na kartu",
     "price": 450,
     "image": "/images/produkty/magsafe.jpeg"
