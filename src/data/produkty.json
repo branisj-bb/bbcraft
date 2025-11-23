@@ -1,27 +1,32 @@
 [
   {
-    "slug":"penezenka",
+    "slug": "penezenka",
     "title": "Peněženka",
-    "price": 1200,
-    "image": "/images/produkty/penezenka.jpeg"
+    "price": "--",
+    "image": "/images/produkty/penezenka.jpeg",
+    "description": "toto je penezenka",
+    "category": "kuze",
+    "index":1
   },
-    {
-    "slug":"popruh",
+  {
+    "slug": "popruh",
     "title": "Popruh na fotoaparát",
-    "price": 450,
-    "image": "/images/produkty/popruh.jpeg"
+    "price": "--",
+    "image": "/images/produkty/popruh.jpeg",
+    "category": "kuze"
   },
   {
-    "slug":"obal",
+    "slug": "obal",
     "title": "Obal na brýle",
-    "price": 450,
-    "image": "/images/produkty/obal.jpeg"
+    "price": "--",
+    "image": "/images/produkty/obal.jpeg",
+    "category": "kuze"
   },
-
   {
-    "slug":"magsafe",
+    "slug": "magsafe",
     "title": "Magsafe držák na kartu",
-    "price": 450,
-    "image": "/images/produkty/magsafe.jpeg"
+    "price": "--",
+    "image": "/images/produkty/magsafe.jpeg",
+    "category": "kuze"
   }
 ]

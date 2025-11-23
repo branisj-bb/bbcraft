@@ -4,7 +4,11 @@ export default {
     "./src/**/*.{astro,html,js,jsx,ts,tsx,vue,svelte}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        manrope: ['Manrope', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 };

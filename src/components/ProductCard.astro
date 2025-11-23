@@ -1,9 +1,10 @@
 ---
+// původní interface a props
 interface Product {
-  // přizpůsob si názvy podle svého JSONu
-  title: string;           // např. "OBAL NA BRÝLE"
-  price: number | string;  // např. 999
-  image: string;           // cesta k obrázku
+  slug: string;
+  title: string;
+  price: number | string;
+  image: string;
 }
 
 interface Props {
@@ -12,28 +13,22 @@ interface Props {
 }
 
 const { product, index } = Astro.props as Props;
-
-// 01, 02, 03…
 const indexLabel = String(index + 1).padStart(2, '0');
 ---
 
-<article class="flex flex-col">
-  <!-- Foto přes celou šířku -->
-  <div class="relative">
-    <img
-      src={product.image}
-      alt={product.title}
-      loading="lazy"
-      class="w-full h-auto object-cover"
-    />
-    <span
-      class="absolute bottom-2 left-2 text-black text-3xl md:text-4xl tracking-[0.25em] drop-shadow-lg"
-    >
-      {indexLabel}
-    </span>
-  </div>
-
-  <!-- Spodní bílý „proužek“ jako na screenu -->
+<a href={`/produkty/${product.slug}`} class="block hover:opacity-90 transition-opacity">
+  <article class="flex flex-col">
+    <div class="relative">
+      <img
+        src={product.image}
+        alt={product.title}
+        loading="lazy"
+        class="w-full h-auto object-cover"
+      />
+      <span class="absolute bottom-2 left-2 text-3xl md:text-4xl tracking-[0.25em] drop-shadow-lg">
+        {indexLabel}
+      </span>
+    </div>
   <div class="mt-2">
     <!-- první řádek: číslo vlevo, cena vpravo -->
     <div class="flex items-end justify-between">
@@ -45,4 +40,5 @@ const indexLabel = String(index + 1).padStart(2, '0');
       </span>
     </div>
   </div>
-</article>
+  </article>
+</a>

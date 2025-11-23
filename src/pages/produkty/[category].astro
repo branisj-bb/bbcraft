@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import produkty from '../../data/produkty.json';
+
+export function getStaticPaths() {
+  // zjistíme unikátní kategorie
+  const categories = ['kuze', 'mech', 'vence'];
+
+  return categories.map((category) => ({
+    params: { category },
+    props: {
+      category,
+      produkty: produkty
+        .filter((p) => p.category === category)
+        .map((p, index) => ({ ...p, index: index + 1 }))
+    }
+  }));
+}
+
+interface Props {
+  category: string;
+  produkty: any[];
+}
+
+const { category, produkty: produktyKategorie } = Astro.props as Props;
+
+const categoryLabelMap: Record<string, string> = {
+  kuze: 'Kůže',
+  mech: 'Mech',
+  vence: 'Věnce'
+};
+
+const title = categoryLabelMap[category] ?? category;
+---
+
+<BaseLayout title={`${title} – BB Craft`}>
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold mb-8 uppercase">{title}</h1>
+
+    {produktyKategorie.length === 0 ? (
+      <p class="text-sm text-neutral-500">
+        V této kategorii zatím nemáme žádné produkty.
+      </p>
+    ) : (
+      <div class="grid gap-16 md:grid-cols-2">
+        {produktyKategorie.map((p, i) => (
+          <ProductCard product={p} index={i} />
+        ))}
+      </div>
+    )}
+  </div>
+</BaseLayout>
