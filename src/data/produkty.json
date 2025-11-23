@@ -1,18 +1,23 @@
 [
   {
-    "slug": "drevena-lampa",
-    "title": "Dřevěná lampa",
-    "price": "1 200 Kč",
-    "image": "/images/drevena-lampa.webp",
-    "buyUrl": "https://platba.example/drevena-lampa",
-    "description": "Ručně vyráběná lampa z bukového dřeva."
+    "title": "Peněženka",
+    "price": 1200,
+    "image": "/images/produkty/penezenka.jpeg"
+  },
+    {
+    "title": "Popruh na fotoaparát",
+    "price": 450,
+    "image": "/images/produkty/popruh.jpeg"
   },
   {
-    "slug": "kovovy-drzak",
-    "title": "Kovový držák",
-    "price": "450 Kč",
-    "image": "/images/kovovy-drzak.webp",
-    "buyUrl": "https://platba.example/kovovy-drzak",
-    "description": "Minimalistický držák na svíčky z černé oceli."
+    "title": "Obal na brýle",
+    "price": 450,
+    "image": "/images/produkty/obal.jpeg"
+  },
+
+  {
+    "title": "Magsafe držák na kartu",
+    "price": 450,
+    "image": "/images/produkty/magsafe.jpeg"
   }
 ]
