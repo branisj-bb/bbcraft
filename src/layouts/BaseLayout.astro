@@ -16,7 +16,7 @@ const { title } = Astro.props;
 
   <body class="text-[#1a1a1a] bg-[#ffffff] min-h-screen flex flex-col">
     <!-- HLAVIČKA — čistá, bez textury -->
-    <header class="w-full bg-[#ffffff] blur-heading font-bold relative">
+    <header class="w-full bg-[#ffffff] blur-heading font-bold fixed top-0 left-0 right-0 z-50 shadow-md">
       <div
         class="max-w-6xl mx-auto px-6 pt-6 pb-4 flex justify-between items-start"
       >
@@ -37,7 +37,7 @@ const { title } = Astro.props;
           <a href="/o-nas" class="hover:opacity-70 transition-opacity">O nás</a>
         </nav>
         <!-- MOBILE HAMBURGER (jen na mobilech) -->
-        <button id="hamburger" class="sm:hidden text-3xl focus:outline-none">
+        <button id="hamburger" class="sm:hidden text-3xl focus:outline-none blur-heading">
           ☰
         </button>
 
@@ -76,7 +76,7 @@ const { title } = Astro.props;
     </header>
 
     <!-- OBSAH -->
-    <main class="flex-1 max-w-6xl mx-auto w-full px-6 py-10">
+    <main class="flex-1 max-w-6xl mx-auto w-full px-6 pt-32 pb-10">
       <slot />
     </main>
 
