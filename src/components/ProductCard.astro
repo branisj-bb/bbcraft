@@ -23,9 +23,9 @@ const indexLabel = String(index + 1).padStart(2, '0');
         src={product.image}
         alt={product.title}
         loading="lazy"
-        class="w-full h-auto object-cover"
+        class="w-full h-auto object-cover transition-all duration-300 hover:sepia hover:saturate-200 hover:hue-rotate-[-20deg]"
       />
-      <span class="absolute bottom-2 left-2 text-3xl md:text-4xl tracking-[0.25em] drop-shadow-lg">
+      <span class="absolute bottom-2 left-2 text-3xl md:text-4xl drop-shadow-lg">
         {indexLabel}
       </span>
     </div>

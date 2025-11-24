@@ -21,12 +21,12 @@ const { produkt } = Astro.props;
         <h1 class="text-4xl md:text-5xl font-bold uppercase leading-tight">
           {produkt.title}
         </h1>
-        <span class="absolute -right-10 top-0 text-6xl md:text-7xl tracking-[0.25em] text-neutral-300">
+        <span class="absolute -right-10 top-0 text-6xl md:text-7xl text-neutral-300">
           {String(produkt.index ?? 0).padStart(2, '0')}
         </span>
       </div>
 
-      <p class="mt-8 text-sm leading-7 max-w-md">
+      <p class="mt-8 text-sm leading-7 max-w-md font-courier">
         {produkt.description}
       </p>
 
