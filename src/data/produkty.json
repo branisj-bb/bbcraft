@@ -18,9 +18,10 @@
   {
     "slug": "obal",
     "title": "Obal na brýle",
-    "price": "--",
+    "price": 590,
     "image": "/images/produkty/obal.jpeg",
-    "category": "kuze"
+    "category": "kuze",
+    "payment":"https://buy.stripe.com/test_7sYeVf6Hzerz3G28uL0gw00"
   },
   {
     "slug": "magsafe",

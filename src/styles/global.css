@@ -21,3 +21,17 @@ body {
 .font-courier {
     font-family: 'Courier Prime', Courier, monospace;
 }
+
+.hover-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: #ff9a4a40; /* oranžová s 25% průhledností */
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+    pointer-events: none;
+}
+
+.hover-card:hover::after {
+    opacity: 1;
+}
