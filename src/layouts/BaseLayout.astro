@@ -14,18 +14,17 @@ const { title } = Astro.props;
     />
   </head>
 
-  <body
-    class="text-[#1a1a1a] bg-[#ffffff] min-h-screen flex flex-col"
-  >
+  <body class="text-[#1a1a1a] bg-[#ffffff] min-h-screen flex flex-col">
     <!-- HLAVIČKA — čistá, bez textury -->
-    <header class="w-full bg-[#ffffff] blur-heading font-bold">
+    <header class="w-full bg-[#ffffff] blur-heading font-bold relative">
       <div
         class="max-w-6xl mx-auto px-6 pt-6 pb-4 flex justify-between items-start"
       >
         <!-- Navigace vlevo -->
         <nav
-          class="text-xs sm:text-sm tracking-wide uppercase flex flex-col space-y-0"
+          class="hidden sm:flex text-xs sm:text-sm tracking-wide uppercase flex flex-col space-y-0"
         >
+       <!--  <nav class="hidden sm:flex text-xs sm:text-sm tracking-wide uppercase space-x-6"> -->
           <a href="/produkty/kuze" class="hover:opacity-70 transition-opacity"
             >Kůže</a
           >
@@ -37,7 +36,29 @@ const { title } = Astro.props;
           >
           <a href="/o-nas" class="hover:opacity-70 transition-opacity">O nás</a>
         </nav>
+        <!-- MOBILE HAMBURGER (jen na mobilech) -->
+        <button id="hamburger" class="sm:hidden text-3xl focus:outline-none">
+          ☰
+        </button>
 
+        <!-- MOBILE MENU SIDEBAR -->
+        <div
+          id="mobileMenu"
+          class="fixed top-0 left-0 h-full w-64 bg-[#f2f0ed] shadow-xl transform -translate-x-full transition-transform duration-300 z-50 flex flex-col p-6 space-y-6"
+        >
+          <button id="closeMenu" class="text-3xl self-end">×</button>
+
+          <a href="/produkty/kuze" class="uppercase tracking-wide text-lg"
+            >Kůže</a
+          >
+          <a href="/produkty/mech" class="uppercase tracking-wide text-lg"
+            >Mech</a
+          >
+          <a href="/produkty/vence" class="uppercase tracking-wide text-lg"
+            >Věnce</a
+          >
+          <a href="/o-nas" class="uppercase tracking-wide text-lg">O nás</a>
+        </div>
         <!-- Logo vpravo -->
         <a href="/" class="block">
           <img
@@ -72,3 +93,16 @@ const { title } = Astro.props;
     </footer>
   </body>
 </html>
+<script>
+  const menu = document.getElementById("mobileMenu");
+  const openBtn = document.getElementById("hamburger");
+  const closeBtn = document.getElementById("closeMenu");
+
+  openBtn?.addEventListener("click", () => {
+    menu.classList.remove("-translate-x-full");
+  });
+
+  closeBtn?.addEventListener("click", () => {
+    menu.classList.add("-translate-x-full");
+  });
+</script>
