@@ -94,6 +94,43 @@ Detailní informace najdeš ve Stripe.
   }
 }
 
+async function pushOrderToMake({ email, name, amount, currency }) {
+  const url =
+    process.env.MAKE_WEBHOOK_URL;
+
+  if (!url) {
+    console.error("MAKE_WEBHOOK_URL není nastavené, přeskočím zápis do Make");
+    return;
+  }
+
+  const payload = {
+    email,
+    name,
+    amount: amount / 100,
+    currency: currency.toUpperCase(),
+    createdAt: new Date().toISOString(),
+  };
+
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!res.ok) {
+      const body = await res.text();
+      console.error("❌ Zápis do Make webhooku selhal:", res.status, body);
+    } else {
+      console.log("📄 Objednávka pushnutá do Make/Sheetu");
+    }
+  } catch (err) {
+    console.error("❌ Chyba při volání Make webhooku:", err);
+  }
+}
+
 /**
  * Pomocná funkce: načte raw body z requestu
  */
@@ -164,6 +201,13 @@ export default async function handler(req, res) {
 
       await sendEmailOwner({
         customerEmail: email || "nezadaný",
+        name,
+        amount: amountTotal,
+        currency,
+      });
+
+      await pushOrderToMake({
+        email,
         name,
         amount: amountTotal,
         currency,
