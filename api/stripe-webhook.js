@@ -51,7 +51,7 @@ Honza
 }
 
 // Helper function to send email to owner via Resend
-async function sendEmailOwner({ customerEmail, name, amount, currency }) {
+async function sendEmailOwner({ customerEmail, name, amount, currency, product }) {
   if (!process.env.RESEND_API_KEY) {
     console.error("RESEND_API_KEY is not set, skipping owner email");
     return;
@@ -80,6 +80,7 @@ Nová objednávka byla zaplacena:
 Jméno: ${name}
 E-mail zákazníka: ${customerEmail}
 Částka: ${formattedAmount} ${currency.toUpperCase()}
+Produkt(y): ${product || "Neuvedeno"}
 
 Detailní informace najdeš ve Stripe.
       `.trim(),
@@ -94,7 +95,7 @@ Detailní informace najdeš ve Stripe.
   }
 }
 
-async function pushOrderToMake({ email, name, amount, currency }) {
+async function pushOrderToMake({ email, name, amount, currency, product }) {
   const url =
     process.env.MAKE_WEBHOOK_URL;
 
@@ -108,6 +109,7 @@ async function pushOrderToMake({ email, name, amount, currency }) {
     name,
     amount: amount / 100,
     currency: currency.toUpperCase(),
+    product,
     createdAt: new Date().toISOString(),
   };
 
@@ -182,10 +184,31 @@ export default async function handler(req, res) {
     const amountTotal = session.amount_total; // v centech/haléřích
     const currency = session.currency;
 
+    let productDescription = "Neznámý produkt";
+    try {
+      const fullSession = await stripe.checkout.sessions.retrieve(session.id, {
+        expand: ["line_items", "line_items.data.price.product"],
+      });
+      const lineItems = fullSession.line_items?.data || [];
+      if (lineItems.length > 0) {
+        productDescription = lineItems
+          .map(
+            (item) =>
+              item.description ||
+              item.price?.product?.name ||
+              "Položka"
+          )
+          .join(", ");
+      }
+    } catch (err) {
+      console.error("❌ Chyba při načítání produktů ze Stripe:", err);
+    }
+
     console.log("💰 Úspěšná platba");
     console.log("   Jméno:", name);
     console.log("   E-mail:", email);
     console.log("   Částka:", amountTotal, currency);
+    console.log("   Produkt(y):", productDescription);
 
     try {
       if (email) {
@@ -204,6 +227,7 @@ export default async function handler(req, res) {
         name,
         amount: amountTotal,
         currency,
+        product: productDescription,
       });
 
       await pushOrderToMake({
@@ -211,6 +235,7 @@ export default async function handler(req, res) {
         name,
         amount: amountTotal,
         currency,
+        product: productDescription,
       });
     } catch (err) {
       console.error("❌ Chyba při odesílání emailů:", err);
