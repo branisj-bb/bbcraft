@@ -28,16 +28,16 @@ děkujeme za tvou objednávku!
 
 Úspěšně jsme přijali platbu ve výši ${formattedAmount} ${currency.toUpperCase()}.
 
-Prosím, odpověz na tento e-mail a napiš mi, jaký způsob doručení preferuješ:
+Prosím, odpověz na tento e-mail a napiš nám, jaký způsob doručení preferuješ:
 
 - Zásilkovna na adresu (uveď prosím adresu)
 - Zásilkovna Z-BOX (uveď prosím kód boxu nebo adresu boxu)
 - Osobní převzetí v Praze
 
-Jakmile budu mít tyto informace, objednávku připravím a dám ti vědět.
+Jakmile budeme mít tyto informace, objednávku připravíme a dáme ti vědět.
 
 Díky!
-Honza
+Honza a Bára
       `.trim(),
     }),
   });
@@ -104,13 +104,28 @@ async function pushOrderToMake({ email, name, amount, currency, product }) {
     return;
   }
 
+  // Přepočet času do Europe/Prague a hezký formát pro Sheets
+  const nowUtc = new Date();
+  const pragueNow = new Date(
+    nowUtc.toLocaleString("en-US", { timeZone: "Europe/Prague" })
+  );
+
+  const pad = (num) => String(num).padStart(2, "0");
+
+  const createdAtLocal = `${pragueNow.getFullYear()}-${pad(
+    pragueNow.getMonth() + 1
+  )}-${pad(pragueNow.getDate())} ${pad(pragueNow.getHours())}:${pad(
+    pragueNow.getMinutes()
+  )}:${pad(pragueNow.getSeconds())}`;
+
   const payload = {
     email,
     name,
     amount: amount / 100,
     currency: currency.toUpperCase(),
     product,
-    createdAt: new Date().toISOString(),
+    createdAt: createdAtLocal,      // lidsky čitelné, lokální (Praha)
+    createdAtUtc: nowUtc.toISOString(), // pro případný debug
   };
 
   try {
