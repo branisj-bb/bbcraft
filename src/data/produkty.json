@@ -3,7 +3,7 @@
     "slug": "penezenka",
     "title": "Peněženka",
     "price": "--",
-    "image": "/images/produkty/penezenka.jpeg",
+    "image": "/images/produkty/kuze/penezenka.webp",
     "description": "toto je penezenka.  orem ipsum je nesmyslný pseudonymní latinský text používaný v grafickém designu, tisku a webdesignu jako výplňový text. Slouží k demonstraci vzhledu grafických návrhů, jako jsou fonty, rozvržení stránek nebo dokumentů, místo smysluplného obsahu, aby se pozornost soustředila na vizuální stránku..",
     "category": "kuze",
     "payment": "https://buy.stripe.com/test_7sYeVf6Hzerz3G28uL0gw00",
@@ -13,7 +13,7 @@
     "slug": "popruh",
     "title": "Popruh na fotoaparát",
     "price": "--",
-    "image": "/images/produkty/popruh.jpeg",
+    "image": "/images/produkty/kuze/popruh.webp",
     "category": "kuze",
     "payment": "https://buy.stripe.com/test_7sYeVf6Hzerz3G28uL0gw00",
     "id": "K02"
@@ -22,7 +22,7 @@
     "slug": "obal",
     "title": "Obal na brýle",
     "price": 590,
-    "image": "/images/produkty/obal.jpeg",
+    "image": "/images/produkty/kuze/obal.webp",
     "category": "kuze",
     "payment": "https://buy.stripe.com/test_7sYeVf6Hzerz3G28uL0gw00",
     "id": "K03"
@@ -31,7 +31,7 @@
     "slug": "magsafe",
     "title": "Magsafe držák na kartu",
     "price": "--",
-    "image": "/images/produkty/magsafe.jpeg",
+    "image": "/images/produkty/kuze/magsafe.webp",
     "category": "kuze",
     "payment": "https://buy.stripe.com/test_7sYeVf6Hzerz3G28uL0gw00",
     "id": "K04"
