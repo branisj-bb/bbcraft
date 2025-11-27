@@ -1,6 +1,12 @@
 ---
 import "../styles/global.css";
-const { title } = Astro.props;
+
+const {
+  title,
+  description = "Ručně vyráběné kožené výrobky, peněženky, popruhy na foťák, pouzdra na brýle a přírodní věnce z české dílny BB Craft.",
+  url = "https://bbcraft.cz"
+} = Astro.props;
+
 const isHome = Astro.url.pathname === "/";
 ---
 
@@ -9,6 +15,18 @@ const isHome = Astro.url.pathname === "/";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title ? `${title} | BB Craft` : "BB Craft"}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={url} />
+
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content={title ? `${title} | BB Craft` : "BB Craft"}
+    />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={url} />
+    <meta property="og:site_name" content="BB Craft" />
     <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap"
       rel="stylesheet"

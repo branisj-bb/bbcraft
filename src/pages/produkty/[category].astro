@@ -28,10 +28,30 @@ const categoryLabelMap: Record<string, string> = {
   vence: 'Věnce'
 };
 
+const seoTitleMap: Record<string, string> = {
+  kuze: 'Kožené výrobky – peněženky, popruhy, pouzdra',
+  mech: 'Dekorace z mechu a přírodnin',
+  vence: 'Věnce na dveře a stůl z přírodních materiálů'
+};
+
+const seoDescriptionMap: Record<string, string> = {
+  kuze:
+    'Ručně vyráběné kožené peněženky, popruhy na fotoaparát, pouzdra na brýle a další doplňky z kvalitní kůže. Poctivá česká ruční výroba BB Craft.',
+  mech:
+    'Originální mechové dekorace a přírodní aranžmá pro váš interiér. Ručně vyráběné dekorace z mechu, dřeva a sušených květin od BB Craft.',
+  vence:
+    'Ručně vázané věnce na dveře i na stůl z přírodních materiálů. Celoroční i sezónní dekorace z české dílny BB Craft.'
+};
+
 const title = categoryLabelMap[category] ?? category;
+const pageTitle = seoTitleMap[category] ?? title;
+const description =
+  seoDescriptionMap[category] ??
+  `Ručně vyráběné produkty v kategorii ${title} z české dílny BB Craft.`;
+const url = `https://bbcraft.cz/produkty/${category}`;
 ---
 
-<BaseLayout title={`${title}`}>
+<BaseLayout title={pageTitle} description={description} url={url}>
   <div class="max-w-[94rem] mx-auto px-4 py-12">
     <h1 class="text-3xl font-bold mb-8 uppercase blur-heading">{title}</h1>
 
