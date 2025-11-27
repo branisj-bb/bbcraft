@@ -38,7 +38,11 @@ const { produkt } = Astro.props;
         {produkt.price} Kč
       </div>
 
-      <a href={produkt.payment} class="mt-8 inline-block px-8 py-4 border border-black uppercase tracking-wide hover:bg-neutral-100">
+      <!-- Payment methods image -->
+      <img src="/images/payments.png" alt="Available payment methods"
+        class="mt-6 w-48 opacity-90" />
+
+      <a href={produkt.payment} class="mt-1 inline-block px-8 py-4 border border-black uppercase tracking-wide hover:bg-neutral-100">
         Zaplatit
       </a>
     </div>

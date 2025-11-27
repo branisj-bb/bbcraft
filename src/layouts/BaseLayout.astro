@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 const { title } = Astro.props;
+const isHome = Astro.url.pathname === "/";
 ---
 
 <html lang="cs">
@@ -17,7 +18,16 @@ const { title } = Astro.props;
 
   <body class="text-[#1a1a1a] bg-[#ffffff] min-h-screen flex flex-col">
     <!-- HLAVIČKA — čistá, bez textury -->
-    <header class="w-full bg-[#ffffff] blur-heading font-bold fixed top-0 left-0 right-0 z-50 shadow-md">
+ <header
+  data-home={isHome ? "true" : "false"}
+  class={`w-full font-bold fixed top-0 left-0 right-0 z-50 transition-colors duration-300 blur-heading
+    ${
+      isHome
+        ? "bg-transparent"
+        : "bg-[#ffffff] shadow-md"
+    }
+  `}
+    >
       <div
         class="max-w-6xl mx-auto px-6 pt-3 pb-2 flex justify-between items-center"
       >
@@ -86,17 +96,24 @@ const { title } = Astro.props;
     </header>
 
     <!-- OBSAH -->
-    <main class="flex-1 max-w-6xl mx-auto w-full px-6 pt-32 pb-10">
+    <main class="flex-1 max-w-[100rem] mx-auto w-full px-6 pt-32 pb-10">
       <slot />
     </main>
 
     <!-- FOOTER -->
-    <footer class="max-w-6xl mx-auto w-full px-6 pb-14">
+    <footer class="max-w-7xl mx-auto w-full px-6 pb-14">
       <!-- ŠNEK + KONTAKTY V ŘÁDKU -->
       <section class="mt-20 mb-12 flex flex-row justify-between items-center">
-        <div class="text-xs uppercase tracking-[0.35em] space-y-1">
-          <p>E-MAIL</p>
-          <p>INSTAGRAM</p>
+        <div class="text-xs uppercase tracking-[0.35em] space-y-4">
+          <div>
+            <p class="mb-1">E-MAIL</p>
+            <a href="mailto:info@bbcraft.cz" class="tracking-normal lowercase hover:opacity-70 transition-opacity font-courier">info@bbcraft.cz</a>
+          </div>
+
+          <div>
+            <p class="mb-1">INSTAGRAM</p>
+            <a href="https://www.instagram.com/bbcraft.cz" target="_blank" class="tracking-normal lowercase hover:opacity-70 transition-opacity font-courier">instagram.com/bbcraft.cz</a>
+          </div>
         </div>
 
         <img
@@ -109,6 +126,7 @@ const { title } = Astro.props;
   </body>
 </html>
 <script>
+  // mobilní menu
   const menu = document.getElementById("mobileMenu");
   const openBtn = document.getElementById("hamburger");
   const closeBtn = document.getElementById("closeMenu");
@@ -123,4 +141,22 @@ const { title } = Astro.props;
     menu.classList.add("translate-x-full");
     overlay.classList.add("opacity-0", "pointer-events-none");
   });
+
+  // změna headeru při scrollu jen na homepage
+  const header = document.querySelector("header[data-home='true']");
+
+if (header) {
+  const onScroll = () => {
+    if (window.scrollY > 50) {
+      header.classList.remove("bg-transparent");
+      header.classList.add("bg-[#ffffff]", "shadow-md");
+    } else {
+      header.classList.add("bg-transparent");
+      header.classList.remove("bg-[#ffffff]", "shadow-md");
+    }
+  };
+
+  window.addEventListener("scroll", onScroll);
+  onScroll();
+}
 </script>

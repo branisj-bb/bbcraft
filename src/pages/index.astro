@@ -3,6 +3,33 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Domů">
+	<!-- ÚVODNÍ BACKGROUND OBRÁZEK PRO HEADER -->
+<!-- ÚVODNÍ BACKGROUND OBRÁZEK PRO HEADER -->
+<section class="relative h-[60vh] min-h-[320px] w-screen -mt-[130px] left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+  <img
+    src="/images/main_bg1.jpeg"
+    alt="Úvodní pozadí"
+    class="absolute inset-0 w-full h-full object-cover"
+  />
+
+  <!-- CATEGORY‑STYLE PRUH – STRONGER -->
+  <div
+    class="absolute left-0 right-0 pointer-events-none"
+    style="
+      top: 28%;
+      bottom: 28%;
+      background: linear-gradient(
+        to right,
+        rgba(230, 70, 20, 0.55),
+        rgba(255, 170, 50, 0.60),
+        rgba(120, 160, 50, 0.48)
+      );
+      mix-blend-mode: overlay;
+    "
+  ></div>
+
+</section>
+
 	<!-- HERO – 3 velké obrázky s barevným overlayem -->
 	<section class="mt-10">
 		<div class="grid gap-6 md:grid-cols-3 blur-heading">
