@@ -20,9 +20,9 @@ async function sendEmailCustomer({ email, name, amount, currency }) {
     body: JSON.stringify({
       from: process.env.EMAIL_FROM || "Objednávky <noreply@example.com>",
       to: email,
-      subject: "Díky za objednávku, ${name}! 🐌",
+      subject: "Díky za objednávku! 🐌",
       text: `
-Ahoj ${name},
+Ahoj,
 
 moc děkujeme za tvoji objednávku.
 Platba ve výši ${formattedAmount} ${currency.toUpperCase()} k nám dorazila v pořádku a my se můžeme pustit do chystání balíčku.
