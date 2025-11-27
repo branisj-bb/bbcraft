@@ -4,37 +4,40 @@
 @tailwind utilities;
 
 :root {
-    --font-sans: 'Manrope', sans-serif;
-    --font-serif: 'Courier Prime', Courier, monospace;
+  --font-sans: 'Manrope', sans-serif;
+  --font-serif: 'Courier Prime', Courier, monospace;
 }
 
 body {
-    font-family: var(--font-sans);
+  font-family: var(--font-sans);
 }
+
 .blur-heading {
-    text-shadow:
-        0 0 4px rgba(0,0,0,0.35),
-        0 0 10px rgba(0,0,0,0.25),
-        0 0 18px rgba(0,0,0,0.20);
+  text-shadow:
+    0 0 4px rgba(0, 0, 0, 0.35),
+    0 0 10px rgba(0, 0, 0, 0.25),
+    0 0 18px rgba(0, 0, 0, 0.20);
 }
 
 .font-courier {
-    font-family: 'Courier Prime', Courier, monospace;
+  font-family: 'Courier Prime', Courier, monospace;
 }
 
 .hover-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-color: #ff9a4a40; /* oranžová s 25% průhledností */
-    opacity: 0;
-    transition: opacity 0.3s ease-out;
-    pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #ff9a4a40;
+  /* oranžová s 25% průhledností */
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+  pointer-events: none;
 }
 
 .hover-card:hover::after {
-    opacity: 1;
+  opacity: 1;
 }
+
 html {
   scrollbar-gutter: stable;
 }
@@ -49,11 +52,12 @@ html {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.25),   /* nahoře tmavší */
-    rgba(0,0,0,0)       /* dolů čiré */
-  );
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.25),
+      /* nahoře tmavší */
+      rgba(0, 0, 0, 0)
+      /* dolů čiré */
+    );
   pointer-events: none;
   z-index: 2;
 }
@@ -66,11 +70,11 @@ html {
 }
 
 .kaz {
-    background: linear-gradient(
-        to right,
-        rgba(230,100,20,0.18),
-        rgba(255,200,60,0.20),
-        rgba(120,160,60,0.18),
-    );
-    mix-blend-mode:overlay;
+  top: 28%;
+  bottom: 28%;
+  background: linear-gradient(to right,
+      rgba(230, 70, 20, 0.55),
+      rgba(255, 170, 50, 0.60),
+      rgba(120, 160, 50, 0.48));
+  mix-blend-mode: overlay;
 }

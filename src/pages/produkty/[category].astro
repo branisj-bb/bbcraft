@@ -10,9 +10,7 @@ export function getStaticPaths() {
     params: { category },
     props: {
       category,
-      produkty: produkty
-        .filter((p) => p.category === category)
-        .map((p, index) => ({ ...p, index: index + 1 }))
+      produkty: produkty.filter((p) => p.category === category)
     }
   }));
 }
@@ -34,7 +32,7 @@ const title = categoryLabelMap[category] ?? category;
 ---
 
 <BaseLayout title={`${title}`}>
-  <div class="max-w-6xl mx-auto px-4 py-12">
+  <div class="max-w-[94rem] mx-auto px-4 py-12">
     <h1 class="text-3xl font-bold mb-8 uppercase blur-heading">{title}</h1>
 
     {produktyKategorie.length === 0 ? (
@@ -44,7 +42,7 @@ const title = categoryLabelMap[category] ?? category;
     ) : (
       <div class="grid gap-16 md:grid-cols-2">
         {produktyKategorie.map((p, i) => (
-          <ProductCard product={p} index={i} />
+          <ProductCard product={p} index={p.id} />
         ))}
       </div>
     )}

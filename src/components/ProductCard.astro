@@ -1,6 +1,7 @@
 ---
 // původní interface a props
 interface Product {
+  id: number | string;
   slug: string;
   title: string;
   price: number | string;
@@ -9,22 +10,27 @@ interface Product {
 
 interface Props {
   product: Product;
-  index: number;
 }
 
-const { product, index } = Astro.props as Props;
-const indexLabel = String(index + 1).padStart(2, '0');
+const { product } = Astro.props as Props;
+const indexLabel = String(product.id).padStart(2, '0');
 ---
 
-<a href={`/produkty/${product.slug}`} class="block hover:opacity-90 transition-opacity">
+<div  class="block relative">
   <article class="flex flex-col">
-    <div class="relative">
+    <div class="relative overflow-hidden">
+      <a href={`/produkty/${product.slug}`} class="group block">
       <img
         src={product.image}
         alt={product.title}
         loading="lazy"
-        class="w-full h-auto object-cover transition-all duration-300 hover:sepia hover:saturate-200 hover:hue-rotate-[-20deg]"
+        class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
       />
+      <div
+        class="absolute left-[-10%] right-[-10%] top-[30%] bottom-[30%] pointer-events-none opacity-0 group-hover:opacity-80 transition-opacity duration-500 mix-blend-overlay kaz"
+      ></div>
+    </a>
+
       <span class="absolute bottom-2 left-2 text-3xl md:text-4xl drop-shadow-lg">
         {indexLabel}
       </span>
@@ -41,4 +47,4 @@ const indexLabel = String(index + 1).padStart(2, '0');
     </div>
   </div>
   </article>
-</a>
+</div>

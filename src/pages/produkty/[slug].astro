@@ -22,16 +22,12 @@ const { produkt } = Astro.props;
           {produkt.title}
         </h1>
         <span class="absolute -right-10 top-0 text-6xl md:text-7xl text-neutral-300">
-          {String(produkt.index ?? 0).padStart(2, '0')}
+          {String(produkt.id ?? '').padStart(2, '0')}
         </span>
       </div>
 
       <p class="mt-8 text-sm leading-7 max-w-md font-courier">
         {produkt.description}
-      </p>
-
-      <p class="mt-10 font-semibold tracking-wide">
-        Péče o výrobek
       </p>
 
       <div class="mt-12 text-3xl font-bold">
