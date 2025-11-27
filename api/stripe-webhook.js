@@ -20,24 +20,27 @@ async function sendEmailCustomer({ email, name, amount, currency }) {
     body: JSON.stringify({
       from: process.env.EMAIL_FROM || "Objednávky <noreply@example.com>",
       to: email,
-      subject: "Děkujeme za objednávku",
+      subject: "Díky za objednávku, ${name}! 🐌",
       text: `
 Ahoj ${name},
 
-děkujeme za tvou objednávku!
+moc děkujeme za tvoji objednávku.
+Platba ve výši ${formattedAmount} ${currency.toUpperCase()} k nám dorazila v pořádku a my se můžeme pustit do chystání balíčku.
 
-Úspěšně jsme přijali platbu ve výši ${formattedAmount} ${currency.toUpperCase()}.
+Teď od tebe ještě potřebujeme upřesnit, jak chceš svůj kousek doručit. Prosím, odpověz na tento e-mail a napiš nám, co si vybereš:
+	•	Zásilkovna na adresu
+→ napiš prosím přesnou adresu
+	•	Zásilkovna Z-BOX
+→ napiš prosím kód boxu nebo adresu boxu
+	•	Osobní převzetí v Praze
+→ domluvíme se spolu na místě a čase
 
-Prosím, odpověz na tento e-mail a napiš nám, jaký způsob doručení preferuješ:
+Jakmile budeme mít tyhle informace, začneme balit a dáme ti vědět, až se tvůj balíček vydá na cestu.
 
-- Zásilkovna na adresu (uveď prosím adresu)
-- Zásilkovna Z-BOX (uveď prosím kód boxu nebo adresu boxu)
-- Osobní převzetí v Praze
+Díky, že jdeš do toho pomalejšího, poctivého světa s námi.
 
-Jakmile budeme mít tyto informace, objednávku připravíme a dáme ti vědět.
-
-Díky!
 Honza a Bára
+BB Craft
       `.trim(),
     }),
   });
