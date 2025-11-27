@@ -1,0 +1,144 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "O nás";
+---
+
+<BaseLayout {title}>
+    <section>
+        <!-- 1. řada – text vlevo, obrazek vpravo -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+            <!-- TEXT -->
+            <div class="square-block">
+                <div class="square-inner flex flex-col justify-between">
+                    <div class="space-y-4 m-6 md:m-10">
+                        <p
+                            class="text-2xl md:text-3xl font-manrope leading-snug blur-heading font-bold uppercase"
+                        >
+                            O nás
+                        </p>
+                        <p
+                            class="text-sm md:text-base leading-relaxed font-courier"
+                        >
+                            BB Craft je malá rodinná dílna v srdci města, kde
+                            kombinujeme kůži, mech a přírodní materiály s
+                            trpělivou ruční prací. Každý kus vzniká krok za
+                            krokem, bez spěchu, s respektem k materiálu i k
+                            člověku, který ho bude nosit nebo mít doma.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OBRÁZEK -->
+            <div class="square-block">
+                <div class="square-inner overflow-hidden">
+                    <img
+                        src="/images/onas1.webp"
+                        alt="Ateliér BB Craft – dílna a pracovní stůl"
+                        class="w-full h-full object-cover"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. řada – obrazek vlevo, text vpravo -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+            <!-- OBRÁZEK -->
+            <div class="square-block">
+                <div class="square-inner overflow-hidden">
+                    <img
+                        src="/images/onas2.webp"
+                        alt="Detail ruční práce s kůží a přírodními materiály"
+                        class="w-full h-full object-cover"
+                    />
+                </div>
+            </div>
+
+            <!-- TEXT -->
+            <div class="square-block">
+                <div class="square-inner flex flex-col justify-between">
+                    <div class="space-y-4 m-6 md:m-10">
+                        <p
+                            class="text-2xl md:text-3xl font-manrope leading-snug blur-heading font-bold uppercase"
+                        >
+                            ŠNEKOVSKÁ FILOZOFIE, TRPĚLIVOST, DETAIL A KLID
+                        </p>
+                        <p
+                            class="text-sm md:text-base leading-relaxed font-courier"
+                        >
+                            U nás jde všechno tempem, které dává věcem smysl.
+                            Kůže se nedá uspěchat, mech má vlastní nálady a
+                            přírodní materiály si říkají o prostor, aby vynikly.
+                            Děláme věci pomalu, poctivě a s takovou pozorností,
+                            že by to schválil i šnek. Výsledek? Výrobky, které
+                            mají charakter, voní přírodou a vydrží déle než
+                            první dojem. Vítejte.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. řada – obrazek vlevo, text vpravo -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+            <!-- OBRÁZEK -->
+            <div class="square-block">
+                <div class="square-inner overflow-hidden">
+                    <img
+                        src="/images/onas3.webp"
+                        alt="Přírodní motiv – mech, listy a struktury"
+                        class="w-full h-full object-cover"
+                    />
+                </div>
+            </div>
+
+            <!-- TEXT -->
+            <div class="square-block">
+                <div class="square-inner flex flex-col justify-between">
+                    <div class="space-y-4 m-6 md:m-10">
+                        <p
+                            class="text-2xl md:text-3xl font-manrope leading-snug blur-heading font-bold uppercase"
+                        >
+                            Doprava a podmínky
+                        </p>
+                        <div
+                            class="text-sm md:text-base leading-relaxed font-courier"
+                        >
+                            <p class="mb-4">
+                                Produkty jsou na zakázku a fotky bývají
+                                orientační. V případě zájmu rádi produkt
+                                připravíme právě pro vás a zohledníme vaše
+                                přání.
+                            </p>
+                            <p class="mb-4">
+                                Doprava je započítaná v ceně a domluvíme se na
+                                ní individuálně. Standardně posíláme přes
+                                zásilkovnu (jak do boxu tak na adresu) a nebo
+                                jde domluvit osobní vyzvednutí na Praze 1.
+                            </p>
+                            <p class="mb-4">
+                                Máte zájem o konzultaci? Ozvěte se.
+                            </p>
+                            <p>
+                                <a
+                                    href="mailto:info@bbcraft.cz"
+                                    class="hover:opacity-70 transition-opacity"
+                                    >info@bbcraft.cz</a
+                                >
+                            </p>
+                            <p>
+                                <a
+                                    href="https://www.instagram.com/bbcraft.cz"
+                                    target="_blank"
+                                    class="hover:opacity-70 transition-opacity"
+                                    >instagram.com/bbcraft.cz</a
+                                >
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

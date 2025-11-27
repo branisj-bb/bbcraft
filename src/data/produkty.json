@@ -6,6 +6,7 @@
     "image": "/images/produkty/penezenka.jpeg",
     "description": "toto je penezenka.  orem ipsum je nesmyslný pseudonymní latinský text používaný v grafickém designu, tisku a webdesignu jako výplňový text. Slouží k demonstraci vzhledu grafických návrhů, jako jsou fonty, rozvržení stránek nebo dokumentů, místo smysluplného obsahu, aby se pozornost soustředila na vizuální stránku..",
     "category": "kuze",
+    "payment": "https://buy.stripe.com/test_7sYeVf6Hzerz3G28uL0gw00",
     "id": "K01"
   },
   {
@@ -14,6 +15,7 @@
     "price": "--",
     "image": "/images/produkty/popruh.jpeg",
     "category": "kuze",
+    "payment": "https://buy.stripe.com/test_7sYeVf6Hzerz3G28uL0gw00",
     "id": "K02"
   },
   {
@@ -22,7 +24,7 @@
     "price": 590,
     "image": "/images/produkty/obal.jpeg",
     "category": "kuze",
-    "payment":"https://buy.stripe.com/test_7sYeVf6Hzerz3G28uL0gw00",
+    "payment": "https://buy.stripe.com/test_7sYeVf6Hzerz3G28uL0gw00",
     "id": "K03"
   },
   {
@@ -31,6 +33,7 @@
     "price": "--",
     "image": "/images/produkty/magsafe.jpeg",
     "category": "kuze",
+    "payment": "https://buy.stripe.com/test_7sYeVf6Hzerz3G28uL0gw00",
     "id": "K04"
   }
 ]

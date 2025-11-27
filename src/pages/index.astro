@@ -4,21 +4,36 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout title="Domů">
 	<!-- ÚVODNÍ BACKGROUND OBRÁZEK PRO HEADER -->
-<!-- ÚVODNÍ BACKGROUND OBRÁZEK PRO HEADER -->
-<section class="relative h-[60vh] min-h-[320px] w-screen -mt-[130px] left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
-  <img
-    src="/images/main_bg.webp"
-    alt="Úvodní pozadí"
-    class="absolute inset-0 w-full h-full object-cover object-top"
-  />
+	<!-- ÚVODNÍ BACKGROUND OBRÁZEK PRO HEADER -->
+	<section
+		class="relative h-[60vh] min-h-[320px] w-screen -mt-[130px] left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]"
+	>
+		<img
+			src="/images/main_bg.webp"
+			alt="Úvodní pozadí"
+			class="absolute inset-0 w-full h-full object-cover object-top"
+		/>
 
-  <!-- CATEGORY‑STYLE PRUH – STRONGER -->
-  <div
-    class="kaz absolute left-0 right-0 pointer-events-none"
-  ></div>
-
-</section>
-
+		<!-- CATEGORY‑STYLE PRUH – STRONGER -->
+		<div class="kaz absolute left-0 right-0 pointer-events-none"></div>
+	</section>
+	<!-- ŠNEKOVSKÁ FILOZOFIE -->
+	<section class="mt-32 mb-32 text-center max-w-3xl mx-auto">
+		<h2
+			class="blur-heading text-xl md:text-2xl font-bold uppercase text-[#333333] font-manrope"
+		>
+			ŠNEKOVSKÁ FILOZOFIE, TRPĚLIVOST, DETAIL A KLID
+		</h2>
+		<p
+			class="mt-6 text-xs md:text-sm leading-relaxed tracking-wide text-[#444444] font-courier"
+		>
+			U nás jde všechno tempem, které dává věcem smysl. Kůže se nedá
+			uspěchat, mech má vlastní nálady a přírodní materiály si říkají o
+			prostor, aby vynikly. Děláme věci pomalu, poctivě a s takovou
+			pozorností, že by to schválil i šnek. Výsledek? Výrobky, které mají
+			charakter, voní přírodou a vydrží déle než první dojem. Vítejte.
+		</p>
+	</section>
 	<!-- HERO – 3 velké obrázky s barevným overlayem -->
 	<section class="mt-10">
 		<div class="grid gap-6 md:grid-cols-3 blur-heading">
@@ -73,23 +88,5 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 				</div>
 			</a>
 		</div>
-	</section>
-
-	<!-- ŠNEKOVSKÁ FILOZOFIE -->
-	<section class="mt-16 mb-10 text-center max-w-3xl mx-auto">
-		<h2
-			class="blur-heading text-xl md:text-2xl font-bold uppercase text-[#333333] font-manrope"
-		>
-			ŠNEKOVSKÁ FILOZOFIE, TRPĚLIVOST, DETAIL A KLID
-		</h2>
-		<p
-			class="mt-6 text-xs md:text-sm leading-relaxed tracking-wide text-[#444444] font-courier"
-		>
-			U nás jde všechno tempem, které dává věcem smysl. Kůže se nedá
-			uspěchat, mech má vlastní nálady a přírodní materiály si říkají o
-			prostor, aby vynikly. Děláme věci pomalu, poctivě a s takovou
-			pozorností, že by to schválil i šnek. Výsledek? Výrobky, které mají
-			charakter, voní přírodou a vydrží déle než první dojem. Vítejte.
-		</p>
 	</section>
 </BaseLayout>
