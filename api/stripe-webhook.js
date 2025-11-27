@@ -112,9 +112,9 @@ async function pushOrderToMake({ email, name, amount, currency, product }) {
 
   const pad = (num) => String(num).padStart(2, "0");
 
-  const createdAtLocal = `${pragueNow.getFullYear()}-${pad(
+  const createdAtLocal = `${pad(pragueNow.getDate())}.${pad(
     pragueNow.getMonth() + 1
-  )}-${pad(pragueNow.getDate())} ${pad(pragueNow.getHours())}:${pad(
+  )}.${pragueNow.getFullYear()} ${pad(pragueNow.getHours())}:${pad(
     pragueNow.getMinutes()
   )}:${pad(pragueNow.getSeconds())}`;
 
