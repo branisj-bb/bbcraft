@@ -1,39 +1,53 @@
 [
   {
     "slug": "penezenka",
-    "title": "Peněženka",
-    "price": "--",
+    "title": "Kartovka",
+    "price": "500",
     "image": "/images/produkty/kuze/penezenka.webp",
-    "description": "toto je penezenka.  orem ipsum je nesmyslný pseudonymní latinský text používaný v grafickém designu, tisku a webdesignu jako výplňový text. Slouží k demonstraci vzhledu grafických návrhů, jako jsou fonty, rozvržení stránek nebo dokumentů, místo smysluplného obsahu, aby se pozornost soustředila na vizuální stránku..",
+    "description": "Malá, ručně šitá peněženka ze silné hovězí kůže navržená tak, aby vydržela každodenní nošení a časem získala patinu. Perfektní pro ty, kdo chtějí minimalistickou peněženku, co se vejde i do kapsy saka.\nUvnitř najdeš dost místa pro karty, občas bankovku, bez zbytečných přehnaných přihrádek. Díky ruční výrobě z malé dílny dostaneš kus, který má duši a taky kůži, která voní a žije s tebou.\nPokud chceš, můžeme domluvit i jinou barvu nebo steh.",
     "category": "kuze",
-    "payment": "https://buy.stripe.com/test_7sYeVf6Hzerz3G28uL0gw00",
+    "payment": "https://buy.stripe.com/9B64gBehw2LgczS2QP1VK01",
     "id": "K01"
   },
   {
     "slug": "popruh",
     "title": "Popruh na fotoaparát",
-    "price": "--",
+    "price": "650",
     "image": "/images/produkty/kuze/popruh.webp",
+    "description": "Ručně vyrobený kožený popruh na fotoaparát z dílny BB Craft.\nDíky použité plné hovězí kůži je tak trochu tlustší a výraznější než běžné popruhy, ale vydrží roky používání. Pokud fotíš často, spolehlivě zvládne i těžší retro přístroj. Popruh je pohodlný, pevný a má přirozenou kůži, která časem krásně získá patinu. Dodáváme jej na míru.\nNapiš, pokud chceš jinou délku nebo barevný steh.",
     "category": "kuze",
-    "payment": "https://buy.stripe.com/test_7sYeVf6Hzerz3G28uL0gw00",
+    "payment": "https://buy.stripe.com/bJe9AV7T8gC69nG1ML1VK03",
     "id": "K02"
   },
   {
     "slug": "obal",
     "title": "Obal na brýle",
-    "price": 590,
+    "price": 850,
     "image": "/images/produkty/kuze/obal.webp",
+    "description": "Jednoduché, ručně šité pouzdro na brýle, které ocení každý, kdo nechce „tovární“ plast.\nVzniklo podle filozofie BB Craft: pomalu, s respektem k materiálu, s detailem, který vydrží. Obal ochrání tvoje brýle před poškrábáním i prachem v batohu, tašce nebo autě. Kůže je přírodní a každý kus je trochu jiný, což mu dává charakter. Ideální pro ty, kdo hledají praktičnost spojenou s kouskem rukodělného řemesla.\nMožnost domluvit barvu, steh nebo razbu jmenovky tě dělá majitelem jedinečného kusu.",
     "category": "kuze",
-    "payment": "https://buy.stripe.com/fZu3cxddsetYfM44YX1VK00",
+    "payment": "https://buy.stripe.com/bJe4gB1uKgC68jCfDB1VK04",
     "id": "K03"
   },
   {
     "slug": "magsafe",
     "title": "Magsafe držák na kartu",
-    "price": "--",
+    "price": "600",
     "image": "/images/produkty/kuze/magsafe.webp",
+    "description": "Spojení tradičního řemesla a moderní potřeby. Ručně šitý kožený držák karet, kompatibilní s MagSafe nebo jen jako elegantní slim peněženka. Plná hovězí kůže, ruční šití, žádný plast, žádná rychlá výroba. Design je čistý a jednoduchý minimalismus, který působí stylově a přitom prakticky. Pro každodenní nošení, časté používání i dlouhé roky.",
     "category": "kuze",
-    "payment": "https://buy.stripe.com/test_7sYeVf6Hzerz3G28uL0gw00",
+    "payment": "https://buy.stripe.com/fZufZjgpEbhM9nGbnl1VK02",
     "id": "K04"
+  },
+  {
+    "slug": "mecharium_velke",
+    "title": "Mechárium velké",
+    "price": "950",
+    "image": "/images/produkty/mech/mecharium_velke.webp",
+    "image2": "/images/produkty/mech/mecharium_velke_2.webp",
+    "description": "Mechárium z naší malé pražské dílny. Kousek klidu zavřený ve skle. Každé vzniká ručně, bez spěchu, vrstvené od kamenů až po mech a fitónii tak, aby spolu dlouhodobě fungovaly. Není to dekorace z velkoobchodu. Je to malý ekosystém, který si žije vlastním tempem, potřebuje jen minimum péče a časem získává úplně jiný charakter.\n\nPoužíváme živé mechy, zdravé rostliny a kvalitní substrát, který udrží uvnitř správnou vlhkost. Skleněná nádoba s korkovým víkem umožní, aby si mechárium drželo vlastní mikroklima. Stačí ho postavit tam, kde má rozptýlené světlo, a občas se na něj podívat.\n\nKaždý kus je originál. Nikdy neuděláme dva stejné. To je kouzlo ruční práce a přírody dohromady.",
+    "category": "mech",
+    "payment": "https://buy.stripe.com/4gM6oJb5k71wdDWgHF1VK05",
+    "id": "M01"
   }
 ]
