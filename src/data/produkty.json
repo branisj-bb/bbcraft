@@ -42,12 +42,67 @@
   {
     "slug": "mecharium_velke",
     "title": "Mechárium velké",
-    "price": "950",
+    "price": "1300",
     "image": "/images/produkty/mech/mecharium_velke.webp",
     "image2": "/images/produkty/mech/mecharium_velke_2.webp",
     "description": "Mechárium z naší malé pražské dílny. Kousek klidu zavřený ve skle. Každé vzniká ručně, bez spěchu, vrstvené od kamenů až po mech a fitónii tak, aby spolu dlouhodobě fungovaly. Není to dekorace z velkoobchodu. Je to malý ekosystém, který si žije vlastním tempem, potřebuje jen minimum péče a časem získává úplně jiný charakter.\n\nPoužíváme živé mechy, zdravé rostliny a kvalitní substrát, který udrží uvnitř správnou vlhkost. Skleněná nádoba s korkovým víkem umožní, aby si mechárium drželo vlastní mikroklima. Stačí ho postavit tam, kde má rozptýlené světlo, a občas se na něj podívat.\n\nKaždý kus je originál. Nikdy neuděláme dva stejné. To je kouzlo ruční práce a přírody dohromady.",
     "category": "mech",
-    "payment": "https://buy.stripe.com/4gM6oJb5k71wdDWgHF1VK05",
+    "payment": "https://buy.stripe.com/bJecN7flA3PkarK0IH1VK06",
     "id": "M01"
+  },
+  {
+    "slug": "cinglak",
+    "title": "Cingrlák",
+    "price": "500",
+    "image": "/images/produkty/vence/cingrlak.webp",
+    "image2": "/images/produkty/vence/cingrlak2.webp",
+    "description": "Tenhle věnec miluje pozornost a vůbec se tím netají. Dlouhé barevné stuhy mu dodávají hravý, skoro až pohádkový vzhled, jako by čekal, kdy začne vítr a on se konečně může „roztančit“. Je vyrobený z čerstvého cedrového jehličí, které krásně voní a přinese domů kus zimního lesa.\nSkvěle se hodí na dveře, chodbu nebo klidně do interiéru jako výrazný dekorativní kousek. Jednoduchý základ, výrazné stuhy, čistý radostný efekt.",
+    "category": "vence",
+    "payment": "https://buy.stripe.com/4gMaEZ2yO99E2Zibnl1VK07",
+    "id": "V01"
+  },
+  {
+    "slug": "maslir",
+    "title": "Mašlíř",
+    "price": "450",
+    "image": "/images/produkty/vence/Maslir.webp",
+    "image2": "/images/produkty/vence/Maslir2.webp",
+    "description": "Mašlíř je věnec, kterému stačí jedna pořádná mašle, aby ukradl pozornost celých Vánoc. Jeho červenobílá stuha má neodolatelný šarm a dává mu hravý charakter. Zbytek práce nechává na přírodě. Husté jehličí, drobné větvičky a jemné ozdůbky vytvářejí krásně přirozený, voňavý základ.\nJe to přesně ten typ věnce, který se nebojí být sám sebou: jednoduchý, útulný a s osobností. Hodí se na dveře i dovnitř, všude tam, kde chceš dodat trochu radosti a zimního kouzla.",
+    "category": "vence",
+    "payment": "https://buy.stripe.com/9B6fZj1uK3PkarKbnl1VK08",
+    "id": "V02"
+  },
+  {
+    "slug": "zlatan",
+    "title": "Zlatan",
+    "price": "400",
+    "image": "/images/produkty/vence/Zlatan.webp",
+    "image2": "/images/produkty/vence/Zlatan2.webp",
+    "description": "Zlatan je věnec, který miluje být vidět. Jeho velká zlatá stuha mu dodává noblesu, ale hned vedle toho má v sobě i trochu rošťácké radosti díky modré ozdobě a červeným bobulkám. Spolu vytvářejí slavnostní, ale pořád příjemně domácký dojem.\nVoní po čerstvém jehličí, hodí se na dveře i do interiéru a udělá radost všem, kdo mají rádi Vánoce se špetkou elegance i humoru.",
+    "category": "vence",
+    "payment": "https://buy.stripe.com/bJe8wR2yO99EgQ8fDB1VK09",
+    "id": "V03"
+  },
+  {
+    "slug": "rudik",
+    "title": "Rudík",
+    "price": "400",
+    "image": "/images/produkty/vence/Rudik.webp",
+    "image2": "/images/produkty/vence/Rudik2.webp",
+    "description": "Rudík je přesně ten typ věnce, který miluje klasiku, ale umí ji nosit s lehkostí. Červená mašle mu dodává šmrnc a jemné bílé větvičky vytvářejí něžný zimní kontrast. Díky přírodním šištičkám působí útulně a domácky, jako Vánoce, které znáš od dětství.\nVoní po čerstvém jehličí, na dveřích působí elegantně a zároveň mile. Ideální pro každého, kdo chce sváteční dekoraci s kouskem tradice a malou dávkou hravosti.",
+    "category": "vence",
+    "payment": "https://buy.stripe.com/cNibJ33CSadIczSezx1VK0a",
+    "id": "V04"
+  },
+  {
+    "slug": "bohous",
+    "title": "Bohouš",
+    "price": "400",
+    "image": "/images/produkty/vence/Bohous.webp",
+    "image2": "/images/produkty/vence/Bohous2.webp",
+    "description": "Bohouš je věnec, který si na nic nehraje, je přirozený, trochu boho a úplně v klidu. Proutěný základ mu dává lehkost a vzdušnost, zatímco větvičky jehličí tvoří volný, nedokonale dokonalý tvar. Jemné červené mašličky mu dodávají sváteční nádech, ale pořád zůstává svůj: nenápadně krásný, příjemně nedbalý a s velkým srdcem.\nHodí se pro ty, kteří mají rádi přírodu, jednoduchost a dekorace, co mají charisma bez přehánění. Bohouš prostě přinese domů klidnou, přirozenou atmosféru Vánoc.",
+    "category": "vence",
+    "payment": "https://buy.stripe.com/00w6oJ4GW4To7fy4YX1VK0b",
+    "id": "V05"
   }
 ]
