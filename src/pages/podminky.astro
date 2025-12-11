@@ -1,0 +1,145 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Podmínky & ochrana osobních údajů";
+---
+
+<BaseLayout {title}>
+    <section class="max-w-3xl mx-auto px-6 md:px-8 py-12 md:py-16 space-y-10">
+        <!-- Obrázek šneka – klidně smaž, pokud ho nechcete -->
+        <div class="w-full flex justify-center">
+            <div class="w-full md:w-2/3 lg:w-1/2 overflow-hidden">
+                <img
+                    src="/images/podminky_snek.webp"
+                    alt="Rodinný šnek BB Craft"
+                    class="w-full h-auto object-cover"
+                />
+            </div>
+        </div>
+
+        <!-- Nadpis stránky -->
+        <header class="space-y-2">
+            <h1
+                class="text-2xl md:text-3xl font-manrope font-bold uppercase leading-snug"
+            >
+                Obchodní podmínky & ochrana osobních údajů
+            </h1>
+        </header>
+
+        <!-- OBCHODNÍ PODMÍNKY -->
+        <article class="space-y-4 text-sm md:text-base font-courier leading-relaxed">
+            <h2 class="text-lg md:text-xl font-manrope font-bold uppercase">
+                Obchodní podmínky
+            </h2>
+
+            <p>
+                Naše výrobky vznikají ručně a na zakázku. Fotografie jsou
+                orientační a výsledný produkt vždy ladíme podle vašeho přání.
+            </p>
+
+            <h3 class="font-manrope font-bold uppercase text-sm md:text-base">
+                Objednávka
+            </h3>
+            <p>
+                Objednávka je závazná ve chvíli, kdy zaplatíte přes Stripe.
+                Po obdržení platby vás kontaktujeme e-mailem a domluvíme
+                detaily výroby a doručení.
+            </p>
+
+            <h3 class="font-manrope font-bold uppercase text-sm md:text-base">
+                Cena a platba
+            </h3>
+            <p>
+                Cena zobrazená při platbě je konečná. Platba probíhá bezpečně
+                přes platební bránu Stripe.
+            </p>
+
+            <h3 class="font-manrope font-bold uppercase text-sm md:text-base">
+                Doprava
+            </h3>
+            <p>
+                Doprava je započítaná v ceně a domluvíme se na ní individuálně.
+                Standardně posíláme přes Zásilkovnu (box nebo výdejní místo),
+                případně je možné osobní vyzvednutí na Praze&nbsp;1.
+            </p>
+
+            <h3 class="font-manrope font-bold uppercase text-sm md:text-base">
+                Reklamace
+            </h3>
+            <p>
+                Pokud by byl výrobek vadný, napište nám na
+                <a
+                    href="mailto:info@bbcraft.cz"
+                    class="underline hover:opacity-70 transition-opacity"
+                    >info@bbcraft.cz</a
+                >
+                a domluvíme společné řešení.
+            </p>
+
+            <h3 class="font-manrope font-bold uppercase text-sm md:text-base">
+                Odstoupení od smlouvy
+            </h3>
+            <p>
+                U zakázkových výrobků není možné odstoupit od smlouvy jako u
+                běžného zboží, protože každý kus vyrábíme přímo pro vás.
+            </p>
+        </article>
+
+        <!-- GDPR -->
+        <article class="space-y-4 text-sm md:text-base font-courier leading-relaxed border-t pt-8 mt-4">
+            <h2 class="text-lg md:text-xl font-manrope font-bold uppercase">
+                Ochrana osobních údajů (GDPR)
+            </h2>
+
+            <p>
+                Vážíme si vašeho soukromí. Když si u nás objednáte výrobek
+                a zaplatíte přes Stripe, zpracováváme jen údaje, které
+                potřebujeme k dokončení zakázky – typicky e-mail, jméno
+                a údaje pro domluvu doručení.
+            </p>
+
+            <h3 class="font-manrope font-bold uppercase text-sm md:text-base">
+                K čemu údaje používáme
+            </h3>
+            <ul class="list-disc list-inside space-y-1">
+                <li>potvrzení objednávky a domluvu detailů,</li>
+                <li>výrobu a doručení zakázky,</li>
+                <li>splnění zákonných povinností (např. účetnictví).</li>
+            </ul>
+
+            <p>
+                Údaje sdílíme pouze s poskytovatelem platební brány Stripe.
+                Nepoužíváme je pro marketing bez vašeho souhlasu.
+            </p>
+
+            <h3 class="font-manrope font-bold uppercase text-sm md:text-base">
+                Jak dlouho údaje uchováváme
+            </h3>
+            <p>
+                Údaje uchováváme jen po dobu nezbytnou k vyřízení zakázky
+                a podle zákonných lhůt.
+            </p>
+
+            <h3 class="font-manrope font-bold uppercase text-sm md:text-base">
+                Vaše práva
+            </h3>
+            <p>
+                Můžete nás kdykoli požádat o přístup k vašim údajům, jejich
+                opravu nebo výmaz.
+            </p>
+
+            <h3 class="font-manrope font-bold uppercase text-sm md:text-base">
+                Kontakt
+            </h3>
+            <p>
+                V případě dotazů k podmínkám nebo ochraně osobních údajů nás
+                můžete kontaktovat na adrese
+                <a
+                    href="mailto:info@bbcraft.cz"
+                    class="underline hover:opacity-70 transition-opacity"
+                    >info@bbcraft.cz</a
+                >.
+            </p>
+        </article>
+    </section>
+</BaseLayout>
