@@ -1,40 +1,56 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import produkty from '../../data/produkty.json';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import produkty from "../../data/produkty.json";
 
 // ✅ Tohle doplň úplně nahoru
 export async function getStaticPaths() {
-  return produkty.map(p => ({
+  return produkty.map((p) => ({
     params: { slug: p.slug },
-    props: { produkt: p }
+    props: { produkt: p },
   }));
 }
 
 const { produkt } = Astro.props;
+const images =
+  produkt.images ?? [produkt.image, produkt.image2].filter(Boolean);
 ---
+
 <BaseLayout title={produkt.title}>
   <div class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-16">
-
     <!-- LEVÁ STRANA: TEXT + NUMERACE + CENA + TLAČÍTKO -->
-    <div class="flex flex-col justify-center">
+    <div class="flex flex-col justify-start">
       <div class="relative">
-        <span class="block lg:inline-block lg:absolute lg:-right-10 lg:top-0 text-4xl lg:text-7xl text-neutral-300 mb-2 lg:mb-0">
-          {String(produkt.id ?? '').padStart(2, '0')}
+        <span
+          class="block lg:inline-block lg:absolute lg:-right-10 lg:top-0 text-4xl lg:text-7xl text-neutral-300 mb-2 lg:mb-0"
+        >
+          {String(produkt.id ?? "").padStart(2, "0")}
         </span>
         <h1 class="text-4xl md:text-5xl font-bold uppercase leading-tight">
           {produkt.title}
         </h1>
       </div>
 
-      <p class="whitespace-pre-line mt-8 text-sm leading-7 max-w-md font-courier">
+      <p
+        class="whitespace-pre-line mt-8 text-sm leading-7 max-w-md font-courier"
+      >
         {produkt.description}
       </p>
 
       <div class="mt-12 text-3xl font-bold">
         {produkt.price} Kč
       </div>
-
-      <a href={produkt.payment} class="mt-12 font-bold text-center mt-1 inline-block px-8 py-4 border border-black uppercase tracking-wide hover:bg-neutral-100">
+      <p class="text-xs mt-4">
+        <a
+          href="/o-nas#doprava"
+          class="underline hover:opacity-70 transition-opacity"
+        >
+          Informace o dopravě a podmínkách →
+        </a>
+      </p>
+      <a
+        href={produkt.payment}
+        class="mt-12 font-bold text-center mt-1 inline-block px-8 py-4 border border-black uppercase tracking-wide hover:bg-neutral-100"
+      >
         Přejít k platbě
       </a>
       <p class="mt-2 text-xs text-neutral-500 text-center">
@@ -42,13 +58,134 @@ const { produkt } = Astro.props;
       </p>
     </div>
 
-    <!-- PRAVÁ STRANA: OBRÁZKY V PODKLADU -->
+    <!-- PRAVÁ STRANA: OBRÁZKY S MOŽNOSTÍ ZVĚTŠENÍ (NEOMEZENĚ) -->
     <div class="grid grid-cols-1 gap-12">
-      <img src={produkt.image} alt={produkt.title} class="w-full object-cover" />
-      {produkt.image2 && (
-        <img src={produkt.image2} alt={`${produkt.title} detail`} class="w-full object-cover" />
-      )}
+      {
+        images.map((src, index) => (
+          <button type="button" class="relative group" data-image={src}>
+            <img
+              src={src}
+              alt={
+                index === 0
+                  ? produkt.title
+                  : `${produkt.title} detail ${index + 1}`
+              }
+              class="w-full object-cover"
+            />
+            <span class="absolute bottom-3 right-3 text-3xl md:text-4xl leading-none text-black drop-shadow-sm group-hover:scale-110 transition-transform">
+              +
+            </span>
+          </button>
+        ))
+      }
     </div>
-
   </div>
+
+  <!-- LIGHTBOX OVERLAY PRO ZVĚTŠENÍ OBRÁZKU -->
+  <div
+    id="lightbox"
+    class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-200 z-50"
+  >
+    <button
+      id="lightbox-close"
+      type="button"
+      class="absolute top-6 right-6 text-white text-2xl"
+      aria-label="Zavřít detail obrázku"
+    >
+      ×
+    </button>
+
+    <button
+      id="lightbox-prev"
+      type="button"
+      class="hidden md:flex absolute left-4 md:left-10 top-1/2 -translate-y-1/2 text-white text-3xl px-3 py-2 bg-black/30 hover:bg-black/50"
+      aria-label="Předchozí obrázek"
+    >
+      ‹
+    </button>
+
+    <img
+      id="lightbox-image"
+      src=""
+      alt="Detail produktu"
+      class="max-h-[90vh] max-w-[90vw] object-contain"
+    />
+
+    <button
+      id="lightbox-next"
+      type="button"
+      class="hidden md:flex absolute right-4 md:right-10 top-1/2 -translate-y-1/2 text-white text-3xl px-3 py-2 bg-black/30 hover:bg-black/50"
+      aria-label="Další obrázek"
+    >
+      ›
+    </button>
+  </div>
+
+  <script>
+    const thumbButtons = Array.from(document.querySelectorAll("[data-image]"));
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-image");
+    const closeBtn = document.getElementById("lightbox-close");
+    const prevBtn = document.getElementById("lightbox-prev");
+    const nextBtn = document.getElementById("lightbox-next");
+
+    if (thumbButtons.length > 0 && lightbox && lightboxImg && closeBtn) {
+      let currentIndex = 0;
+
+      const imageSources = thumbButtons.map((btn) =>
+        btn.getAttribute("data-image"),
+      );
+
+      const updateImage = () => {
+        lightboxImg.src = imageSources[currentIndex];
+      };
+
+      const openLightbox = (index) => {
+        currentIndex = index;
+        updateImage();
+        lightbox.classList.remove("opacity-0", "pointer-events-none");
+        lightbox.classList.add("opacity-100");
+        if (imageSources.length > 1) {
+          prevBtn.classList.remove("hidden");
+          nextBtn.classList.remove("hidden");
+        }
+      };
+
+      const closeLightbox = () => {
+        lightbox.classList.add("opacity-0", "pointer-events-none");
+        lightbox.classList.remove("opacity-100");
+      };
+
+      thumbButtons.forEach((btn, index) => {
+        btn.addEventListener("click", () => openLightbox(index));
+      });
+
+      closeBtn.addEventListener("click", closeLightbox);
+
+      lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) {
+          closeLightbox();
+        }
+      });
+
+      prevBtn?.addEventListener("click", (event) => {
+        event.stopPropagation();
+        currentIndex =
+          (currentIndex - 1 + imageSources.length) % imageSources.length;
+        updateImage();
+      });
+
+      nextBtn?.addEventListener("click", (event) => {
+        event.stopPropagation();
+        currentIndex = (currentIndex + 1) % imageSources.length;
+        updateImage();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeLightbox();
+        }
+      });
+    }
+  </script>
 </BaseLayout>

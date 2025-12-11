@@ -5,7 +5,7 @@ interface Product {
   slug: string;
   title: string;
   price: number | string;
-  image: string;
+  images: string[];
 }
 
 interface Props {
@@ -21,7 +21,7 @@ const indexLabel = String(product.id).padStart(2, '0');
     <div class="relative overflow-hidden">
       <a href={`/produkty/${product.slug}`} class="group block">
       <img
-        src={product.image}
+        src={product.images[0]}
         alt={product.title}
         loading="lazy"
         class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"

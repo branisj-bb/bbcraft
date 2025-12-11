@@ -2,8 +2,10 @@
   {
     "slug": "penezenka",
     "title": "Kartovka",
+    "images": [
+      "/images/produkty/kuze/penezenka.webp"
+    ],
     "price": "500",
-    "image": "/images/produkty/kuze/penezenka.webp",
     "description": "Malá, ručně šitá peněženka ze silné hovězí kůže navržená tak, aby vydržela každodenní nošení a časem získala patinu. Perfektní pro ty, kdo chtějí minimalistickou peněženku, co se vejde i do kapsy saka.\nUvnitř najdeš dost místa pro karty, občas bankovku, bez zbytečných přehnaných přihrádek. Díky ruční výrobě z malé dílny dostaneš kus, který má duši a taky kůži, která voní a žije s tebou.\nPokud chceš, můžeme domluvit i jinou barvu nebo steh.",
     "category": "kuze",
     "payment": "https://buy.stripe.com/9B64gBehw2LgczS2QP1VK01",
@@ -12,9 +14,14 @@
   {
     "slug": "popruh",
     "title": "Popruh na fotoaparát",
+    "images": [
+      "/images/produkty/kuze/popruh_1.webp",
+      "/images/produkty/kuze/popruh_2.webp",
+      "/images/produkty/kuze/popruh_3.webp",
+      "/images/produkty/kuze/popruh_4.webp"
+    ],
     "price": "650",
-    "image": "/images/produkty/kuze/popruh.webp",
-    "description": "Ručně vyrobený kožený popruh na fotoaparát z dílny BB Craft.\nDíky použité plné hovězí kůži je tak trochu tlustší a výraznější než běžné popruhy, ale vydrží roky používání. Pokud fotíš často, spolehlivě zvládne i těžší retro přístroj. Popruh je pohodlný, pevný a má přirozenou kůži, která časem krásně získá patinu. Dodáváme jej na míru.\nNapiš, pokud chceš jinou délku nebo barevný steh.",
+    "description": "Ručně vyrobený kožený popruh na fotoaparát z dílny BB Craft.\nDíky použité plné hovězí kůži je tak trochu tlustší a výraznější než běžné popruhy, ale vydrží roky používání. Pokud fotíš často, spolehlivě zvládne i těžší retro přístroj. Popruh je pohodlný, pevný a má přirozenou kůži, která časem krásně získá patinu. Dodáváme jej na míru.\nNapiš, pokud chceš jinou délku nebo barevný steh.\n\nDélka 115cm (možnost na přání až do 130cm)",
     "category": "kuze",
     "payment": "https://buy.stripe.com/bJe9AV7T8gC69nG1ML1VK03",
     "id": "K02"
@@ -22,8 +29,12 @@
   {
     "slug": "obal",
     "title": "Obal na brýle",
+    "images": [
+      "/images/produkty/kuze/pouzdro_1.webp",
+      "/images/produkty/kuze/pouzdro_2.webp",
+      "/images/produkty/kuze/pouzdro_3.webp"
+    ],
     "price": 850,
-    "image": "/images/produkty/kuze/obal.webp",
     "description": "Jednoduché, ručně šité pouzdro na brýle, které ocení každý, kdo nechce „tovární“ plast.\nVzniklo podle filozofie BB Craft: pomalu, s respektem k materiálu, s detailem, který vydrží. Obal ochrání tvoje brýle před poškrábáním i prachem v batohu, tašce nebo autě. Kůže je přírodní a každý kus je trochu jiný, což mu dává charakter. Ideální pro ty, kdo hledají praktičnost spojenou s kouskem rukodělného řemesla.\nMožnost domluvit barvu, steh nebo razbu jmenovky tě dělá majitelem jedinečného kusu.",
     "category": "kuze",
     "payment": "https://buy.stripe.com/bJe4gB1uKgC68jCfDB1VK04",
@@ -32,8 +43,11 @@
   {
     "slug": "magsafe",
     "title": "Magsafe držák na kartu",
+    "images": [
+      "/images/produkty/kuze/magsafe_1.webp",
+      "/images/produkty/kuze/magsafe_2.webp"
+    ],
     "price": "600",
-    "image": "/images/produkty/kuze/magsafe.webp",
     "description": "Spojení tradičního řemesla a moderní potřeby. Ručně šitý kožený držák karet, kompatibilní s MagSafe nebo jen jako elegantní slim peněženka. Plná hovězí kůže, ruční šití, žádný plast, žádná rychlá výroba. Design je čistý a jednoduchý minimalismus, který působí stylově a přitom prakticky. Pro každodenní nošení, časté používání i dlouhé roky.",
     "category": "kuze",
     "payment": "https://buy.stripe.com/fZufZjgpEbhM9nGbnl1VK02",
@@ -43,19 +57,38 @@
     "slug": "mecharium_velke",
     "title": "Mechárium velké",
     "price": "1300",
-    "image": "/images/produkty/mech/mecharium_velke.webp",
-    "image2": "/images/produkty/mech/mecharium_velke_2.webp",
-    "description": "Mechárium z naší malé pražské dílny. Kousek klidu zavřený ve skle. Každé vzniká ručně, bez spěchu, vrstvené od kamenů až po mech a fitónii tak, aby spolu dlouhodobě fungovaly. Není to dekorace z velkoobchodu. Je to malý ekosystém, který si žije vlastním tempem, potřebuje jen minimum péče a časem získává úplně jiný charakter.\n\nPoužíváme živé mechy, zdravé rostliny a kvalitní substrát, který udrží uvnitř správnou vlhkost. Skleněná nádoba s korkovým víkem umožní, aby si mechárium drželo vlastní mikroklima. Stačí ho postavit tam, kde má rozptýlené světlo, a občas se na něj podívat.\n\nKaždý kus je originál. Nikdy neuděláme dva stejné. To je kouzlo ruční práce a přírody dohromady.",
+    "images": [
+      "/images/produkty/mech/mecharium_velke.webp",
+      "/images/produkty/mech/mecharium_velke_2.webp",
+      "/images/produkty/mech/mecharium_velke_3.webp"
+    ],
+    "description": "Mechárium z naší malé pražské dílny. Kousek klidu zavřený ve skle. Každé vzniká ručně, bez spěchu, vrstvené od kamenů až po mech a fitónii tak, aby spolu dlouhodobě fungovaly. Není to dekorace z velkoobchodu. Je to malý ekosystém, který si žije vlastním tempem, potřebuje jen minimum péče a časem získává úplně jiný charakter.\n\nPoužíváme živé mechy, zdravé rostliny a kvalitní substrát, který udrží uvnitř správnou vlhkost. Skleněná nádoba s korkovým víkem umožní, aby si mechárium drželo vlastní mikroklima. Stačí ho postavit tam, kde má rozptýlené světlo, a občas se na něj podívat.\n\nKaždý kus je originál. Nikdy neuděláme dva stejné. To je kouzlo ruční práce a přírody dohromady.\n\nPrůměr 19cm, výška 22cm.",
     "category": "mech",
     "payment": "https://buy.stripe.com/bJecN7flA3PkarK0IH1VK06",
     "id": "M01"
   },
   {
+    "slug": "mecharium_male",
+    "title": "Mechárium malé",
+    "price": "800",
+    "images": [
+      "/images/produkty/mech/mecharium_male_1.webp",
+      "/images/produkty/mech/mecharium_male_2.webp",
+      "/images/produkty/mech/mecharium_male_3.webp",
+      "/images/produkty/mech/mecharium_male_4.webp"
+    ],
+    "description": "Mechárium z naší malé pražské dílny. Kousek klidu zavřený ve skle. Každé vzniká ručně, bez spěchu, vrstvené od kamenů až po mech a fitónii tak, aby spolu dlouhodobě fungovaly. Není to dekorace z velkoobchodu. Je to malý ekosystém, který si žije vlastním tempem, potřebuje jen minimum péče a časem získává úplně jiný charakter.\n\nPoužíváme živé mechy, zdravé rostliny a kvalitní substrát, který udrží uvnitř správnou vlhkost. Skleněná nádoba s korkovým víkem umožní, aby si mechárium drželo vlastní mikroklima. Stačí ho postavit tam, kde má rozptýlené světlo, a občas se na něj podívat.\n\nKaždý kus je originál. Nikdy neuděláme dva stejné. To je kouzlo ruční práce a přírody dohromady.\n\nPrůměr 9cm, výška 27cm.",
+    "category": "mech",
+    "payment": "https://buy.stripe.com/aFa3cx2yOdpU0Ra8b91VK0c",
+    "id": "M02"
+  },
+  {
     "slug": "cinglak",
     "title": "Cingrlák",
-    "price": "500",
-    "image": "/images/produkty/vence/cingrlak.webp",
-    "image2": "/images/produkty/vence/cingrlak2.webp",
+    "images": [
+      "/images/produkty/vence/cingrlak.webp",
+      "/images/produkty/vence/cingrlak2.webp"
+    ],
     "description": "Tenhle věnec miluje pozornost a vůbec se tím netají. Dlouhé barevné stuhy mu dodávají hravý, skoro až pohádkový vzhled, jako by čekal, kdy začne vítr a on se konečně může „roztančit“. Je vyrobený z čerstvého cedrového jehličí, které krásně voní a přinese domů kus zimního lesa.\nSkvěle se hodí na dveře, chodbu nebo klidně do interiéru jako výrazný dekorativní kousek. Jednoduchý základ, výrazné stuhy, čistý radostný efekt.",
     "category": "vence",
     "payment": "https://buy.stripe.com/4gMaEZ2yO99E2Zibnl1VK07",
@@ -64,9 +97,10 @@
   {
     "slug": "maslir",
     "title": "Mašlíř",
-    "price": "450",
-    "image": "/images/produkty/vence/Maslir.webp",
-    "image2": "/images/produkty/vence/Maslir2.webp",
+    "images": [
+      "/images/produkty/vence/Maslir.webp",
+      "/images/produkty/vence/Maslir2.webp"
+    ],
     "description": "Mašlíř je věnec, kterému stačí jedna pořádná mašle, aby ukradl pozornost celých Vánoc. Jeho červenobílá stuha má neodolatelný šarm a dává mu hravý charakter. Zbytek práce nechává na přírodě. Husté jehličí, drobné větvičky a jemné ozdůbky vytvářejí krásně přirozený, voňavý základ.\nJe to přesně ten typ věnce, který se nebojí být sám sebou: jednoduchý, útulný a s osobností. Hodí se na dveře i dovnitř, všude tam, kde chceš dodat trochu radosti a zimního kouzla.",
     "category": "vence",
     "payment": "https://buy.stripe.com/9B6fZj1uK3PkarKbnl1VK08",
@@ -75,9 +109,10 @@
   {
     "slug": "zlatan",
     "title": "Zlatan",
-    "price": "400",
-    "image": "/images/produkty/vence/Zlatan.webp",
-    "image2": "/images/produkty/vence/Zlatan2.webp",
+    "images": [
+      "/images/produkty/vence/Zlatan.webp",
+      "/images/produkty/vence/Zlatan2.webp"
+    ],
     "description": "Zlatan je věnec, který miluje být vidět. Jeho velká zlatá stuha mu dodává noblesu, ale hned vedle toho má v sobě i trochu rošťácké radosti díky modré ozdobě a červeným bobulkám. Spolu vytvářejí slavnostní, ale pořád příjemně domácký dojem.\nVoní po čerstvém jehličí, hodí se na dveře i do interiéru a udělá radost všem, kdo mají rádi Vánoce se špetkou elegance i humoru.",
     "category": "vence",
     "payment": "https://buy.stripe.com/bJe8wR2yO99EgQ8fDB1VK09",
@@ -86,9 +121,10 @@
   {
     "slug": "rudik",
     "title": "Rudík",
-    "price": "400",
-    "image": "/images/produkty/vence/Rudik.webp",
-    "image2": "/images/produkty/vence/Rudik2.webp",
+    "images": [
+      "/images/produkty/vence/Rudik.webp",
+      "/images/produkty/vence/Rudik2.webp"
+    ],
     "description": "Rudík je přesně ten typ věnce, který miluje klasiku, ale umí ji nosit s lehkostí. Červená mašle mu dodává šmrnc a jemné bílé větvičky vytvářejí něžný zimní kontrast. Díky přírodním šištičkám působí útulně a domácky, jako Vánoce, které znáš od dětství.\nVoní po čerstvém jehličí, na dveřích působí elegantně a zároveň mile. Ideální pro každého, kdo chce sváteční dekoraci s kouskem tradice a malou dávkou hravosti.",
     "category": "vence",
     "payment": "https://buy.stripe.com/cNibJ33CSadIczSezx1VK0a",
@@ -97,9 +133,10 @@
   {
     "slug": "bohous",
     "title": "Bohouš",
-    "price": "400",
-    "image": "/images/produkty/vence/Bohous.webp",
-    "image2": "/images/produkty/vence/Bohous2.webp",
+    "images": [
+      "/images/produkty/vence/Bohous.webp",
+      "/images/produkty/vence/Bohous2.webp"
+    ],
     "description": "Bohouš je věnec, který si na nic nehraje, je přirozený, trochu boho a úplně v klidu. Proutěný základ mu dává lehkost a vzdušnost, zatímco větvičky jehličí tvoří volný, nedokonale dokonalý tvar. Jemné červené mašličky mu dodávají sváteční nádech, ale pořád zůstává svůj: nenápadně krásný, příjemně nedbalý a s velkým srdcem.\nHodí se pro ty, kteří mají rádi přírodu, jednoduchost a dekorace, co mají charisma bez přehánění. Bohouš prostě přinese domů klidnou, přirozenou atmosféru Vánoc.",
     "category": "vence",
     "payment": "https://buy.stripe.com/00w6oJ4GW4To7fy4YX1VK0b",
