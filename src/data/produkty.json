@@ -27,8 +27,8 @@
     "id": "K02"
   },
   {
-    "slug": "obal",
-    "title": "Obal na brýle",
+    "slug": "pouzdro",
+    "title": "Pouzdro na brýle",
     "images": [
       "/images/produkty/kuze/pouzdro_1.webp",
       "/images/produkty/kuze/pouzdro_2.webp",
@@ -85,6 +85,7 @@
   {
     "slug": "cinglak",
     "title": "Cingrlák",
+    "price": "500",
     "images": [
       "/images/produkty/vence/cingrlak.webp",
       "/images/produkty/vence/cingrlak2.webp"
@@ -97,6 +98,7 @@
   {
     "slug": "maslir",
     "title": "Mašlíř",
+    "price": "450",
     "images": [
       "/images/produkty/vence/Maslir.webp",
       "/images/produkty/vence/Maslir2.webp"
@@ -109,6 +111,7 @@
   {
     "slug": "zlatan",
     "title": "Zlatan",
+    "price": "400",
     "images": [
       "/images/produkty/vence/Zlatan.webp",
       "/images/produkty/vence/Zlatan2.webp"
@@ -121,6 +124,7 @@
   {
     "slug": "rudik",
     "title": "Rudík",
+    "price": "400",
     "images": [
       "/images/produkty/vence/Rudik.webp",
       "/images/produkty/vence/Rudik2.webp"
@@ -133,6 +137,7 @@
   {
     "slug": "bohous",
     "title": "Bohouš",
+    "price": "400",
     "images": [
       "/images/produkty/vence/Bohous.webp",
       "/images/produkty/vence/Bohous2.webp"
