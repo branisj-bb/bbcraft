@@ -7,6 +7,7 @@ export default {
     extend: {
       fontFamily: {
         manrope: ['Manrope', 'sans-serif'],
+        courier: ['Courier Prime', 'Courier', 'monospace'],
       },
     },
   },

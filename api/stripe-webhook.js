@@ -4,7 +4,7 @@ import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // Helper function to send email to customer via Resend
-async function sendEmailCustomer({ email, name, amount, currency }) {
+async function sendEmailCustomer({ email, name, amount, currency, product }) {
   if (!process.env.RESEND_API_KEY) {
     console.error("RESEND_API_KEY is not set, skipping customer email");
     return;
@@ -24,7 +24,7 @@ async function sendEmailCustomer({ email, name, amount, currency }) {
       text: `
 Ahoj,
 
-moc děkujeme za tvoji objednávku.
+moc děkujeme za tvoji objednávku${product ? ` (${product})` : ""}.
 Platba ve výši ${formattedAmount} ${currency.toUpperCase()} k nám dorazila v pořádku a my se můžeme pustit do chystání balíčku.
 
 Teď od tebe ještě potřebujeme upřesnit, jak chceš svůj kousek doručit. Prosím, odpověz na tento e-mail a napiš nám, co si vybereš:
@@ -235,6 +235,7 @@ export default async function handler(req, res) {
           name,
           amount: amountTotal,
           currency,
+          product: productDescription,
         });
       } else {
         console.error("❌ Chybí email zákazníka, nemůžu poslat potvrzovací email");

@@ -1,10 +1,16 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import onas1 from "../assets/onas1.webp";
+import onas2 from "../assets/onas2.webp";
+import onas3 from "../assets/onas3.webp";
 
 const title = "O nás";
+const description =
+    "Jsme rodina Branišovi z Prahy. Ručně vyrábíme kožené doplňky, mechária a věnce — pomalu, poctivě a s láskou k přírodě.";
 ---
 
-<BaseLayout {title}>
+<BaseLayout {title} {description}>
     <section>
         <!-- 1. řada – text vlevo, obrazek vpravo -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
@@ -12,11 +18,11 @@ const title = "O nás";
             <div>
                 <div class="flex flex-col justify-between h-full">
                     <div class="space-y-4 m-6 md:m-10">
-                        <p
+                        <h1
                             class="text-2xl md:text-3xl font-manrope leading-snug blur-heading font-bold uppercase"
                         >
                             O nás
-                        </p>
+                        </h1>
                         <div
                             class="text-sm md:text-base leading-relaxed font-courier"
                         >
@@ -66,9 +72,11 @@ const title = "O nás";
             <!-- OBRÁZEK -->
             <div>
                 <div class="aspect-square w-full overflow-hidden">
-                    <img
-                        src="/images/onas3.webp"
+                    <Image
+                        src={onas3}
                         alt="Ateliér BB Craft – dílna a pracovní stůl"
+                        widths={[480, 768, 1024, 1440]}
+                        sizes="(min-width: 768px) 50vw, 100vw"
                         class="w-full h-full object-cover"
                     />
                 </div>
@@ -80,9 +88,12 @@ const title = "O nás";
             <!-- OBRÁZEK -->
             <div>
                 <div class="aspect-square w-full overflow-hidden">
-                    <img
-                        src="/images/onas2.webp"
+                    <Image
+                        src={onas2}
                         alt="Detail ruční práce s kůží a přírodními materiály"
+                        widths={[480, 768, 1024, 1440]}
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                        loading="lazy"
                         class="w-full h-full object-cover"
                     />
                 </div>
@@ -92,11 +103,11 @@ const title = "O nás";
             <div>
                 <div class="flex flex-col justify-between h-full">
                     <div class="space-y-4 m-6 md:m-10">
-                        <p
+                        <h2
                             class="text-2xl md:text-3xl font-manrope leading-snug blur-heading font-bold uppercase"
                         >
                             ŠNEKOVSKÁ FILOZOFIE, TRPĚLIVOST, DETAIL A KLID
-                        </p>
+                        </h2>
                         <p
                             class="text-sm md:text-base leading-relaxed font-courier"
                         >
@@ -118,9 +129,12 @@ const title = "O nás";
             <!-- OBRÁZEK -->
             <div>
                 <div class="aspect-square w-full overflow-hidden">
-                    <img
-                        src="/images/onas1.webp"
+                    <Image
+                        src={onas1}
                         alt="Přírodní motiv – mech, listy a struktury"
+                        widths={[480, 768, 1024, 1440]}
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                        loading="lazy"
                         class="w-full h-full object-cover"
                     />
                 </div>
@@ -130,12 +144,12 @@ const title = "O nás";
             <div>
                 <div class="flex flex-col justify-between h-full">
                     <div class="space-y-4 m-6 md:m-10">
-                        <p
+                        <h2
                             id="doprava"
                             class="text-2xl md:text-3xl font-manrope leading-snug blur-heading font-bold uppercase"
                         >
                             Doprava a podmínky
-                        </p>
+                        </h2>
                         <div
                             class="text-sm md:text-base leading-relaxed font-courier"
                         >

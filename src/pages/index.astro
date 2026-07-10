@@ -1,20 +1,35 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { categories } from "../data/categories";
+import mainBg from "../assets/main_bg.webp";
+import kuzeImg from "../assets/kuze.webp";
+import mechImg from "../assets/mech.webp";
+import venceImg from "../assets/vence.webp";
 
 const title = "Ručně vyráběné kožené výrobky a dekorace";
 const description =
 	"BB Craft – česká ruční práce. Kožené peněženky, popruhy na foťák, pouzdra na brýle a přírodní věnce z mechu a květin.";
-const url = "https://bbcraft.cz/";
+
+const categoryImages = {
+	kuze: kuzeImg,
+	mech: mechImg,
+	vence: venceImg,
+};
 ---
 
-<BaseLayout {title} {description} {url}>
+<BaseLayout {title} {description}>
 	<!-- ÚVODNÍ BACKGROUND OBRÁZEK PRO HEADER -->
 	<section
 		class="relative h-[60vh] min-h-[320px] w-screen -mt-[130px] left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]"
 	>
-		<img
-			src="/images/main_bg.webp"
+		<Image
+			src={mainBg}
 			alt="Úvodní pozadí"
+			widths={[640, 1280, 1920, 2560]}
+			sizes="100vw"
+			loading="eager"
+			fetchpriority="high"
 			class="absolute inset-0 w-full h-full object-cover object-top"
 		/>
 
@@ -23,11 +38,11 @@ const url = "https://bbcraft.cz/";
 	</section>
 	<!-- ŠNEKOVSKÁ FILOZOFIE -->
 	<section class="mt-32 mb-32 text-center max-w-3xl mx-auto">
-		<h2
+		<h1
 			class="blur-heading text-xl md:text-2xl font-bold uppercase text-[#333333] font-manrope"
 		>
 			ŠNEKOVSKÁ FILOZOFIE, TRPĚLIVOST, DETAIL A KLID
-		</h2>
+		</h1>
 		<p
 			class="mt-6 text-xs md:text-sm leading-relaxed tracking-wide text-[#444444] font-courier"
 		>
@@ -41,56 +56,25 @@ const url = "https://bbcraft.cz/";
 	<!-- HERO – 3 velké obrázky s barevným overlayem -->
 	<section class="mt-10">
 		<div class="grid gap-6 md:grid-cols-3 blur-heading">
-			<!-- KŮŽE -->
-			<a
-				href="/produkty/kuze"
-				class="group relative block aspect-[4/5] overflow-hidden"
-			>
-				<img
-					src="/images/kuze.webp"
-					alt="Kůže"
-					class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-				/>
-				<div
-					class="absolute inset-0 flex items-center justify-center text-black text-xl md:text-2xl uppercase font-semibold"
-				>
-					KŮŽE
-				</div>
-			</a>
-
-			<!-- MECH -->
-			<a
-				href="/produkty/mech"
-				class="group relative block aspect-[4/5] overflow-hidden"
-			>
-				<img
-					src="/images/mech.webp"
-					alt="Mech"
-					class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-				/>
-				<div
-					class="absolute inset-0 flex items-center justify-center text-black text-xl md:text-2xl uppercase font-semibold"
-				>
-					MECH
-				</div>
-			</a>
-
-			<!-- VĚNCE -->
-			<a
-				href="/produkty/vence"
-				class="group relative block aspect-[4/5] overflow-hidden"
-			>
-				<img
-					src="/images/vence.webp"
-					alt="Věnce"
-					class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-				/>
-				<div
-					class="absolute inset-0 flex items-center justify-center text-black text-xl md:text-2xl uppercase font-semibold"
-				>
-					VĚNCE
-				</div>
-			</a>
+			{
+				categories.map((category) => (
+					<a
+						href={`/produkty/${category.slug}`}
+						class="group relative block aspect-[4/5] overflow-hidden"
+					>
+						<Image
+							src={categoryImages[category.slug]}
+							alt={category.label}
+							widths={[480, 768, 1024]}
+							sizes="(min-width: 768px) 33vw, 100vw"
+							class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+						/>
+						<div class="absolute inset-0 flex items-center justify-center text-black text-xl md:text-2xl uppercase font-semibold">
+							{category.label.toUpperCase()}
+						</div>
+					</a>
+				))
+			}
 		</div>
 	</section>
 </BaseLayout>

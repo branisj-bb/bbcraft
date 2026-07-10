@@ -1,43 +1,41 @@
-# Astro Starter Kit: Minimal
+# BB Craft — bbcraft.cz
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Web malé rodinné dílny BB Craft: ručně vyráběné kožené doplňky, mechária a věnce.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Stack
 
-## 🚀 Project Structure
+- [Astro 5](https://astro.build) — statický web, build do `dist/`
+- Tailwind CSS 3 (přes `@astrojs/tailwind`)
+- `@astrojs/sitemap` — sitemapa se generuje automaticky při buildu
+- Platby: Stripe Payment Links (odkazy v datech produktů)
+- `api/stripe-webhook.js` — serverless webhook (Vercel): po zaplacení pošle
+  potvrzovací e-mail zákazníkovi i majiteli (Resend) a zapíše objednávku do
+  Make/Google Sheets
 
-Inside of your Astro project, you'll see the following folders and files:
+## Struktura
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+- `src/data/produkty.json` — produkty (content collection, schéma v `src/content.config.ts`)
+- `src/data/categories.ts` — kategorie + SEO texty (navigace, homepage, stránky kategorií)
+- `src/assets/` — obrázky optimalizované Astrem (`<Image>`)
+- `public/images/` — jen favicon a OG obrázek (musí mít stabilní URL)
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Příkazy
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+| Příkaz            | Akce                                 |
+| :---------------- | :----------------------------------- |
+| `npm install`     | instalace závislostí                 |
+| `npm run dev`     | dev server na `localhost:4321`       |
+| `npm run build`   | produkční build do `./dist/`         |
+| `npm run preview` | lokální náhled produkčního buildu    |
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Přidání produktu
 
-## 🧞 Commands
+1. Přidej fotky (webp) do `src/assets/produkty/<kategorie>/`
+2. Přidej záznam do `src/data/produkty.json` — cesty k obrázkům relativně
+   (`../assets/produkty/...`), cena jako číslo, `payment` = Stripe Payment Link
+3. Build záznam zvaliduje (chybný obrázek nebo kategorie shodí build)
 
-All commands are run from the root of the project, from a terminal:
+## Webhook — env proměnné
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+`STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `RESEND_API_KEY`, `EMAIL_FROM`,
+`EMAIL_OWNER`, `MAKE_WEBHOOK_URL`

@@ -1,28 +1,22 @@
 ---
-// původní interface a props
-interface Product {
-  id: number | string;
-  slug: string;
-  title: string;
-  price: number | string;
-  images: string[];
-}
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
 
 interface Props {
-  product: Product;
+  product: CollectionEntry<'produkty'>['data'];
 }
 
-const { product } = Astro.props as Props;
-const indexLabel = String(product.id).padStart(2, '0');
+const { product } = Astro.props;
 ---
 
-<div  class="block relative">
-  <article class="flex flex-col">
-    <div class="relative overflow-hidden">
-      <a href={`/produkty/${product.slug}`} class="group block">
-      <img
+<article class="flex flex-col">
+  <div class="relative overflow-hidden">
+    <a href={`/produkty/${product.slug}`} class="group block">
+      <Image
         src={product.images[0]}
         alt={product.title}
+        widths={[480, 768, 1024, 1440]}
+        sizes="(min-width: 768px) 45vw, 100vw"
         loading="lazy"
         class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
       />
@@ -31,20 +25,16 @@ const indexLabel = String(product.id).padStart(2, '0');
       ></div>
     </a>
 
-      <span class="absolute bottom-2 left-2 text-3xl md:text-4xl drop-shadow-lg">
-        {indexLabel}
-      </span>
-    </div>
-  <div class="mt-2">
-    <!-- první řádek: číslo vlevo, cena vpravo -->
-    <div class="flex items-end justify-between">
-      <span class="mt-1 text-xs md:text-sm uppercase">
-        {product.title}
-      </span>
-      <span class="text-xs md:text-sm">
-        {product.price} Kč
-      </span>
-    </div>
+    <span class="absolute bottom-2 left-2 text-3xl md:text-4xl drop-shadow-lg">
+      {product.id}
+    </span>
   </div>
-  </article>
-</div>
+  <div class="mt-2 flex items-end justify-between">
+    <span class="mt-1 text-xs md:text-sm uppercase">
+      {product.title}
+    </span>
+    <span class="text-xs md:text-sm">
+      {product.price} Kč
+    </span>
+  </div>
+</article>

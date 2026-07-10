@@ -1,36 +1,47 @@
 ---
+import { Image } from "astro:assets";
 import "../styles/global.css";
+import { categories } from "../data/categories";
+import logo from "../assets/logo.png";
+import snek from "../assets/snek.webp";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
 
 const {
   title,
   description = "Ručně vyráběné kožené výrobky, peněženky, popruhy na foťák, pouzdra na brýle a přírodní věnce z české dílny BB Craft.",
-  url = "https://bbcraft.cz",
 } = Astro.props;
 
+const fullTitle = title ? `${title} | BB Craft` : "BB Craft";
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL("/images/og-bbcraft.jpg", Astro.site).href;
+
 const isHome = Astro.url.pathname === "/";
+
+const navLinks = [
+  ...categories.map((c) => ({ href: `/produkty/${c.slug}`, label: c.label })),
+  { href: "/o-nas", label: "O nás" },
+];
 ---
 
 <html lang="cs">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title ? `${title} | BB Craft` : "BB Craft"}</title>
+    <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={url} />
+    <link rel="canonical" href={canonicalUrl} />
 
     <!-- Open Graph / social -->
     <meta property="og:type" content="website" />
-    <meta
-      property="og:title"
-      content={title ? `${title} | BB Craft` : "BB Craft"}
-    />
+    <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={url} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="BB Craft" />
-    <meta
-      property="og:image"
-      content="https://bbcraft.cz/images/og-bbcraft.jpg"
-    />
+    <meta property="og:image" content={ogImage} />
     <meta
       property="og:image:alt"
       content="Ručně vyráběné kožené výrobky z dílny BB Craft"
@@ -40,18 +51,14 @@ const isHome = Astro.url.pathname === "/";
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content={title ? `${title} | BB Craft` : "BB Craft"}
-    />
+    <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
-    <meta
-      name="twitter:image"
-      content="https://bbcraft.cz/images/og-bbcraft.jpg"
-    />
+    <meta name="twitter:image" content={ogImage} />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&family=Courier+Prime:wght@400;700&display=swap"
       rel="stylesheet"
     />
     <link rel="icon" type="image/png" href="/images/favicon.png" />
@@ -70,10 +77,13 @@ const isHome = Astro.url.pathname === "/";
       >
         <a href="/" class="block">
           <div class="relative inline-block">
-            <img
-              src="/images/logo.png"
+            <Image
+              src={logo}
               alt="BB Craft"
-              class="h-10 sm:h-16 md:h-20"
+              width={200}
+              densities={[1, 2]}
+              loading="eager"
+              class="h-10 sm:h-16 md:h-20 w-auto"
             />
             <span class="absolute inset-0 flex justify-center">
               <span
@@ -87,23 +97,22 @@ const isHome = Astro.url.pathname === "/";
         </a>
         <!-- Navigace vlevo -->
         <nav
-          class="hidden sm:flex text-xs sm:text-sm tracking-wide uppercase flex flex-col space-y-0 items-center"
+          class="hidden sm:flex text-xs sm:text-sm tracking-wide uppercase flex-col space-y-0 items-center"
         >
-          <!--  <nav class="hidden sm:flex text-xs sm:text-sm tracking-wide uppercase space-x-6"> -->
-          <a href="/produkty/kuze" class="hover:opacity-70 transition-opacity"
-            >Kůže</a
-          >
-          <a href="/produkty/mech" class="hover:opacity-70 transition-opacity"
-            >Mech</a
-          >
-          <a href="/produkty/vence" class="hover:opacity-70 transition-opacity"
-            >Věnce</a
-          >
-          <a href="/o-nas" class="hover:opacity-70 transition-opacity">O nás</a>
+          {
+            navLinks.map((link) => (
+              <a href={link.href} class="hover:opacity-70 transition-opacity">
+                {link.label}
+              </a>
+            ))
+          }
         </nav>
         <!-- MOBILE HAMBURGER (jen na mobilech) -->
         <button
           id="hamburger"
+          aria-label="Otevřít menu"
+          aria-expanded="false"
+          aria-controls="mobileMenu"
           class="sm:hidden text-3xl focus:outline-none blur-heading"
         >
           ☰
@@ -114,18 +123,15 @@ const isHome = Astro.url.pathname === "/";
           id="mobileMenu"
           class="fixed top-0 right-0 h-full w-64 bg-white shadow-xl transform translate-x-full transition-transform duration-300 z-50 flex flex-col p-6 space-y-6"
         >
-          <button id="closeMenu" class="text-3xl self-end">×</button>
+          <button id="closeMenu" aria-label="Zavřít menu" class="text-3xl self-end">×</button>
 
-          <a href="/produkty/kuze" class="uppercase tracking-wide text-lg"
-            >Kůže</a
-          >
-          <a href="/produkty/mech" class="uppercase tracking-wide text-lg"
-            >Mech</a
-          >
-          <a href="/produkty/vence" class="uppercase tracking-wide text-lg"
-            >Věnce</a
-          >
-          <a href="/o-nas" class="uppercase tracking-wide text-lg">O nás</a>
+          {
+            navLinks.map((link) => (
+              <a href={link.href} class="uppercase tracking-wide text-lg">
+                {link.label}
+              </a>
+            ))
+          }
         </div>
         <!-- OVERLAY -->
         <div
@@ -170,10 +176,12 @@ const isHome = Astro.url.pathname === "/";
           </div>
         </div>
 
-        <img
-          src="/images/snek.webp"
+        <Image
+          src={snek}
           alt="Šnek – symbol trpělivosti"
-          class="w-40 md:w-80 max-w-full"
+          width={320}
+          densities={[1, 2]}
+          class="w-40 md:w-80 max-w-full h-auto"
         />
       </section>
     </footer>
@@ -186,14 +194,23 @@ const isHome = Astro.url.pathname === "/";
   const closeBtn = document.getElementById("closeMenu");
   const overlay = document.getElementById("overlay");
 
-  openBtn?.addEventListener("click", () => {
-    menu.classList.remove("translate-x-full");
-    overlay.classList.remove("opacity-0", "pointer-events-none");
-  });
+  const openMenu = () => {
+    menu?.classList.remove("translate-x-full");
+    overlay?.classList.remove("opacity-0", "pointer-events-none");
+    openBtn?.setAttribute("aria-expanded", "true");
+  };
 
-  closeBtn?.addEventListener("click", () => {
-    menu.classList.add("translate-x-full");
-    overlay.classList.add("opacity-0", "pointer-events-none");
+  const closeMenu = () => {
+    menu?.classList.add("translate-x-full");
+    overlay?.classList.add("opacity-0", "pointer-events-none");
+    openBtn?.setAttribute("aria-expanded", "false");
+  };
+
+  openBtn?.addEventListener("click", openMenu);
+  closeBtn?.addEventListener("click", closeMenu);
+  overlay?.addEventListener("click", closeMenu);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMenu();
   });
 
   // změna headeru při scrollu jen na homepage
