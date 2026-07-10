@@ -1,5 +1,16 @@
 [
   {
+    "slug": "testovaci-venec",
+    "title": "Testovací věnec",
+    "images": [
+      "../assets/produkty/vence/cingrlak.webp"
+    ],
+    "price": 15,
+    "description": "Testovací produkt pro ověření platby — prosíme nekupovat.\nPokud ho přesto koupíte, peníze vám vrátíme a šnek vám pošle pozdrav.",
+    "category": "vence",
+    "id": "V99"
+  },
+  {
     "slug": "penezenka",
     "title": "Kartovka",
     "images": [
