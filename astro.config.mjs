@@ -4,5 +4,11 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://bbcraft.cz',
-  integrations: [tailwind(), sitemap()],
+  integrations: [
+    tailwind(),
+    sitemap({
+      filter: (page) =>
+        !page.includes('/kosik') && !page.includes('/dekujeme'),
+    }),
+  ],
 });

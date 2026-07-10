@@ -11,7 +11,6 @@ const produkty = defineCollection({
       price: z.number(),
       description: z.string(),
       category: z.enum(['kuze', 'mech', 'vence']),
-      payment: z.string().url(),
       images: z.array(image()).nonempty(),
     }),
 });

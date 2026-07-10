@@ -3,8 +3,75 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+// Mapování hodnot dropdownu "Způsob doručení" na lidské popisky
+const DELIVERY_LABELS = {
+  zasilkovna_adresa: "Zásilkovna – na adresu",
+  zasilkovna_zbox: "Zásilkovna – Z-BOX",
+  osobni_praha: "Osobní převzetí – Praha 1",
+};
+
+// Vytáhne doručovací údaje ze Stripe checkout session
+function getDeliveryInfo(session) {
+  const customFields = session.custom_fields || [];
+  const deliveryValue = customFields.find((f) => f.key === "doprava")
+    ?.dropdown?.value;
+  const zbox = customFields.find((f) => f.key === "zbox")?.text?.value || "";
+
+  const shipping =
+    session.collected_information?.shipping_details ||
+    session.shipping_details;
+  const addr = shipping?.address;
+  const address = addr
+    ? [
+        shipping.name,
+        addr.line1,
+        addr.line2,
+        `${addr.postal_code || ""} ${addr.city || ""}`.trim(),
+        addr.country,
+      ]
+        .filter(Boolean)
+        .join(", ")
+    : "";
+
+  return {
+    delivery: DELIVERY_LABELS[deliveryValue] || "",
+    zbox,
+    address,
+  };
+}
+
+// Textový blok o doručení pro e-mail zákazníkovi
+function deliveryTextCustomer({ delivery, zbox, address }) {
+  if (!delivery) {
+    // fallback — objednávka bez údajů o doručení (např. starý platební odkaz)
+    return `
+Teď od tebe ještě potřebujeme upřesnit, jak chceš svůj kousek doručit. Prosím, odpověz na tento e-mail a napiš nám, co si vybereš:
+	•	Zásilkovna na adresu
+→ napiš prosím přesnou adresu
+	•	Zásilkovna Z-BOX
+→ napiš prosím kód boxu nebo adresu boxu
+	•	Osobní převzetí v Praze
+→ domluvíme se spolu na místě a čase
+
+Jakmile budeme mít tyhle informace, začneme balit a dáme ti vědět, až se tvůj balíček vydá na cestu.`;
+  }
+
+  let text = `Doručení: ${delivery}`;
+  if (zbox) text += `\nZ-BOX: ${zbox}`;
+  if (address) text += `\nAdresa: ${address}`;
+
+  if (delivery === DELIVERY_LABELS.osobni_praha) {
+    text += `\n\nOzveme se ti a domluvíme spolu místo a čas předání.`;
+  } else if (delivery === DELIVERY_LABELS.zasilkovna_zbox && !zbox) {
+    text += `\n\nJeště nám prosím odpověz na tento e-mail a napiš kód nebo adresu Z-BOXu, kam máme balíček poslat.`;
+  } else {
+    text += `\n\nAž se balíček vydá na cestu, dáme ti vědět.`;
+  }
+  return text;
+}
+
 // Helper function to send email to customer via Resend
-async function sendEmailCustomer({ email, name, amount, currency, product }) {
+async function sendEmailCustomer({ email, name, amount, currency, product, deliveryInfo }) {
   if (!process.env.RESEND_API_KEY) {
     console.error("RESEND_API_KEY is not set, skipping customer email");
     return;
@@ -27,15 +94,7 @@ Ahoj,
 moc děkujeme za tvoji objednávku${product ? ` (${product})` : ""}.
 Platba ve výši ${formattedAmount} ${currency.toUpperCase()} k nám dorazila v pořádku a my se můžeme pustit do chystání balíčku.
 
-Teď od tebe ještě potřebujeme upřesnit, jak chceš svůj kousek doručit. Prosím, odpověz na tento e-mail a napiš nám, co si vybereš:
-	•	Zásilkovna na adresu
-→ napiš prosím přesnou adresu
-	•	Zásilkovna Z-BOX
-→ napiš prosím kód boxu nebo adresu boxu
-	•	Osobní převzetí v Praze
-→ domluvíme se spolu na místě a čase
-
-Jakmile budeme mít tyhle informace, začneme balit a dáme ti vědět, až se tvůj balíček vydá na cestu.
+${deliveryTextCustomer(deliveryInfo || {})}
 
 Díky, že jdeš do toho pomalejšího, poctivého světa s námi.
 
@@ -54,7 +113,7 @@ BB Craft
 }
 
 // Helper function to send email to owner via Resend
-async function sendEmailOwner({ customerEmail, name, amount, currency, product }) {
+async function sendEmailOwner({ customerEmail, name, amount, currency, product, deliveryInfo }) {
   if (!process.env.RESEND_API_KEY) {
     console.error("RESEND_API_KEY is not set, skipping owner email");
     return;
@@ -84,6 +143,9 @@ Jméno: ${name}
 E-mail zákazníka: ${customerEmail}
 Částka: ${formattedAmount} ${currency.toUpperCase()}
 Produkt(y): ${product || "Neuvedeno"}
+Doručení: ${deliveryInfo?.delivery || "Neuvedeno (zeptej se zákazníka)"}
+Z-BOX: ${deliveryInfo?.zbox || "—"}
+Adresa: ${deliveryInfo?.address || "—"}
 
 Detailní informace najdeš ve Stripe.
       `.trim(),
@@ -98,7 +160,7 @@ Detailní informace najdeš ve Stripe.
   }
 }
 
-async function pushOrderToMake({ email, name, amount, currency, product }) {
+async function pushOrderToMake({ email, name, amount, currency, product, deliveryInfo }) {
   const url =
     process.env.MAKE_WEBHOOK_URL;
 
@@ -127,6 +189,9 @@ async function pushOrderToMake({ email, name, amount, currency, product }) {
     amount: amount / 100,
     currency: currency.toUpperCase(),
     product,
+    delivery: deliveryInfo?.delivery || "",
+    zbox: deliveryInfo?.zbox || "",
+    address: deliveryInfo?.address || "",
     createdAt: createdAtLocal,      // lidsky čitelné, lokální (Praha)
     createdAtUtc: nowUtc.toISOString(), // pro případný debug
   };
@@ -201,6 +266,7 @@ export default async function handler(req, res) {
     const name = session.customer_details?.name || "zákazník";
     const amountTotal = session.amount_total; // v centech/haléřích
     const currency = session.currency;
+    const deliveryInfo = getDeliveryInfo(session);
 
     let productDescription = "Neznámý produkt";
     try {
@@ -227,6 +293,7 @@ export default async function handler(req, res) {
     console.log("   E-mail:", email);
     console.log("   Částka:", amountTotal, currency);
     console.log("   Produkt(y):", productDescription);
+    console.log("   Doručení:", deliveryInfo.delivery || "neuvedeno");
 
     try {
       if (email) {
@@ -236,6 +303,7 @@ export default async function handler(req, res) {
           amount: amountTotal,
           currency,
           product: productDescription,
+          deliveryInfo,
         });
       } else {
         console.error("❌ Chybí email zákazníka, nemůžu poslat potvrzovací email");
@@ -247,6 +315,7 @@ export default async function handler(req, res) {
         amount: amountTotal,
         currency,
         product: productDescription,
+        deliveryInfo,
       });
 
       await pushOrderToMake({
@@ -255,6 +324,7 @@ export default async function handler(req, res) {
         amount: amountTotal,
         currency,
         product: productDescription,
+        deliveryInfo,
       });
     } catch (err) {
       console.error("❌ Chyba při odesílání emailů:", err);

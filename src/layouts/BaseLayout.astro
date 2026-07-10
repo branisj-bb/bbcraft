@@ -8,16 +8,21 @@ import snek from "../assets/snek.webp";
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
+  noindex?: boolean;
 }
 
 const {
   title,
   description = "Ručně vyráběné kožené výrobky, peněženky, popruhy na foťák, pouzdra na brýle a přírodní věnce z české dílny BB Craft.",
+  ogImage: customOgImage,
+  noindex = false,
 } = Astro.props;
 
 const fullTitle = title ? `${title} | BB Craft` : "BB Craft";
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
-const ogImage = new URL("/images/og-bbcraft.jpg", Astro.site).href;
+const ogImage =
+  customOgImage ?? new URL("/images/og-bbcraft.jpg", Astro.site).href;
 
 const isHome = Astro.url.pathname === "/";
 
@@ -34,6 +39,7 @@ const navLinks = [
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    {noindex && <meta name="robots" content="noindex" />}
 
     <!-- Open Graph / social -->
     <meta property="og:type" content="website" />
@@ -46,8 +52,14 @@ const navLinks = [
       property="og:image:alt"
       content="Ručně vyráběné kožené výrobky z dílny BB Craft"
     />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    {
+      !customOgImage && (
+        <>
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+        </>
+      )
+    }
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -62,6 +74,9 @@ const navLinks = [
       rel="stylesheet"
     />
     <link rel="icon" type="image/png" href="/images/favicon.png" />
+
+    <!-- Vercel Web Analytics (zapnout v dashboardu: Project → Analytics) -->
+    <script defer is:inline src="/_vercel/insights/script.js"></script>
   </head>
 
   <body class="text-[#1a1a1a] bg-[#ffffff] min-h-screen flex flex-col">
@@ -95,28 +110,63 @@ const navLinks = [
             </span>
           </div>
         </a>
-        <!-- Navigace vlevo -->
-        <nav
-          class="hidden sm:flex text-xs sm:text-sm tracking-wide uppercase flex-col space-y-0 items-center"
-        >
-          {
-            navLinks.map((link) => (
-              <a href={link.href} class="hover:opacity-70 transition-opacity">
-                {link.label}
-              </a>
-            ))
-          }
-        </nav>
-        <!-- MOBILE HAMBURGER (jen na mobilech) -->
-        <button
-          id="hamburger"
-          aria-label="Otevřít menu"
-          aria-expanded="false"
-          aria-controls="mobileMenu"
-          class="sm:hidden text-3xl focus:outline-none blur-heading"
-        >
-          ☰
-        </button>
+        <div class="flex items-center gap-5 sm:gap-8">
+          <!-- Navigace -->
+          <nav
+            class="hidden sm:flex text-xs sm:text-sm tracking-wide uppercase flex-col space-y-0 items-center"
+          >
+            {
+              navLinks.map((link) => (
+                <a href={link.href} class="hover:opacity-70 transition-opacity">
+                  {link.label}
+                </a>
+              ))
+            }
+          </nav>
+
+          <!-- KOŠÍK -->
+          <a
+            href="/kosik"
+            aria-label="Košík"
+            class="relative block hover:opacity-70 transition-opacity"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="26"
+              height="26"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="8" cy="21" r="1"></circle>
+              <circle cx="19" cy="21" r="1"></circle>
+              <path
+                d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
+              ></path>
+            </svg>
+            <span
+              id="cart-badge"
+              class="absolute -top-2 -right-2 min-w-[1.1rem] h-[1.1rem] rounded-full bg-black text-white text-[10px] leading-none items-center justify-center px-1"
+              style="display: none;"
+            >
+              0
+            </span>
+          </a>
+
+          <!-- MOBILE HAMBURGER (jen na mobilech) -->
+          <button
+            id="hamburger"
+            aria-label="Otevřít menu"
+            aria-expanded="false"
+            aria-controls="mobileMenu"
+            class="sm:hidden text-3xl focus:outline-none blur-heading"
+          >
+            ☰
+          </button>
+        </div>
 
         <!-- MOBILE MENU SIDEBAR -->
         <div
@@ -132,6 +182,7 @@ const navLinks = [
               </a>
             ))
           }
+          <a href="/kosik" class="uppercase tracking-wide text-lg">Košík</a>
         </div>
         <!-- OVERLAY -->
         <div
@@ -188,6 +239,20 @@ const navLinks = [
   </body>
 </html>
 <script>
+  import { cartCount } from "../scripts/cart";
+
+  // počítadlo košíku v hlavičce
+  const badge = document.getElementById("cart-badge");
+  const updateBadge = () => {
+    if (!badge) return;
+    const count = cartCount();
+    badge.textContent = String(count);
+    badge.style.display = count > 0 ? "inline-flex" : "none";
+  };
+  updateBadge();
+  document.addEventListener("cart:updated", updateBadge);
+  window.addEventListener("storage", updateBadge);
+
   // mobilní menu
   const menu = document.getElementById("mobileMenu");
   const openBtn = document.getElementById("hamburger");

@@ -1,0 +1,218 @@
+---
+import { getCollection } from "astro:content";
+import { getImage } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const produkty = await getCollection("produkty");
+
+// mini-katalog pro klientský košík (slug → název, cena, náhled)
+const catalog = Object.fromEntries(
+  await Promise.all(
+    produkty.map(async (p) => {
+      const thumb = await getImage({
+        src: p.data.images[0],
+        width: 320,
+        format: "webp",
+      });
+      return [
+        p.data.slug,
+        {
+          slug: p.data.slug,
+          title: p.data.title,
+          price: p.data.price,
+          image: thumb.src,
+        },
+      ];
+    }),
+  ),
+);
+---
+
+<BaseLayout title="Košík" noindex>
+  <section class="max-w-3xl mx-auto py-16">
+    <h1 class="text-3xl font-bold uppercase blur-heading mb-10">Košík</h1>
+
+    <!-- PRÁZDNÝ KOŠÍK -->
+    <div id="cart-empty" style="display: none;" class="font-courier text-sm">
+      <p>Váš košík je zatím prázdný. Šnek se nikam nežene — a vy?</p>
+      <p class="mt-6">
+        <a href="/" class="underline hover:opacity-70 transition-opacity">
+          ← Prohlédnout produkty
+        </a>
+      </p>
+    </div>
+
+    <!-- POLOŽKY -->
+    <div id="cart-content" style="display: none;">
+      <div id="cart-items" class="divide-y divide-neutral-200"></div>
+
+      <div class="mt-8 flex items-end justify-between">
+        <span class="text-xs uppercase tracking-wide text-neutral-500">
+          Doprava je v ceně
+        </span>
+        <span class="text-2xl font-bold">
+          Celkem: <span id="cart-total"></span>&nbsp;Kč
+        </span>
+      </div>
+
+      <button
+        id="checkout-btn"
+        type="button"
+        class="mt-10 w-full font-bold px-8 py-4 border border-black uppercase tracking-wide hover:bg-neutral-100 transition-colors disabled:opacity-50"
+      >
+        Přejít k platbě
+      </button>
+      <p class="mt-2 text-xs text-neutral-500 text-center">
+        Platba kartou probíhá bezpečně přes Stripe přímo na této stránce.
+      </p>
+      <p
+        id="checkout-error"
+        style="display: none;"
+        class="mt-4 text-sm text-red-700 font-courier"
+      >
+      </p>
+    </div>
+
+    <!-- VLOŽENÁ PLATBA STRIPE -->
+    <div id="checkout" class="mt-10"></div>
+  </section>
+
+  <!-- data katalogu pro klientský skript -->
+  <script type="application/json" id="catalog-data" set:html={JSON.stringify(catalog)} />
+
+  <script>
+    import { getCart, setQuantity, removeFromCart } from "../scripts/cart";
+
+    const catalog = JSON.parse(
+      document.getElementById("catalog-data")!.textContent!,
+    );
+
+    const emptyEl = document.getElementById("cart-empty")!;
+    const contentEl = document.getElementById("cart-content")!;
+    const itemsEl = document.getElementById("cart-items")!;
+    const totalEl = document.getElementById("cart-total")!;
+    const checkoutBtn = document.getElementById(
+      "checkout-btn",
+    ) as HTMLButtonElement;
+    const errorEl = document.getElementById("checkout-error")!;
+
+    const formatPrice = (n: number) => n.toLocaleString("cs-CZ");
+
+    function validItems() {
+      return getCart().filter((i) => catalog[i.slug]);
+    }
+
+    function render() {
+      const items = validItems();
+
+      if (items.length === 0) {
+        emptyEl.style.display = "block";
+        contentEl.style.display = "none";
+        return;
+      }
+      emptyEl.style.display = "none";
+      contentEl.style.display = "block";
+
+      itemsEl.innerHTML = "";
+      let total = 0;
+
+      for (const item of items) {
+        const p = catalog[item.slug];
+        total += p.price * item.quantity;
+
+        const row = document.createElement("div");
+        row.className = "py-6 flex items-center gap-5";
+        row.innerHTML = `
+          <a href="/produkty/${p.slug}" class="shrink-0 w-20 sm:w-24">
+            <img src="${p.image}" alt="" class="w-full h-auto object-cover" />
+          </a>
+          <div class="flex-1 min-w-0">
+            <a href="/produkty/${p.slug}" class="uppercase text-sm hover:opacity-70 transition-opacity">${p.title}</a>
+            <div class="mt-1 text-xs text-neutral-500">${formatPrice(p.price)} Kč / kus</div>
+            <div class="mt-3 flex items-center gap-3">
+              <button type="button" data-action="minus" data-slug="${p.slug}" aria-label="Ubrat kus" class="w-7 h-7 border border-neutral-300 hover:bg-neutral-100">−</button>
+              <span class="text-sm w-4 text-center">${item.quantity}</span>
+              <button type="button" data-action="plus" data-slug="${p.slug}" aria-label="Přidat kus" class="w-7 h-7 border border-neutral-300 hover:bg-neutral-100">+</button>
+              <button type="button" data-action="remove" data-slug="${p.slug}" class="ml-3 text-xs underline text-neutral-500 hover:opacity-70">Odebrat</button>
+            </div>
+          </div>
+          <div class="font-bold text-sm sm:text-base whitespace-nowrap">${formatPrice(p.price * item.quantity)} Kč</div>
+        `;
+        itemsEl.appendChild(row);
+      }
+
+      totalEl.textContent = formatPrice(total);
+    }
+
+    itemsEl.addEventListener("click", (event) => {
+      const btn = (event.target as HTMLElement).closest("[data-action]");
+      if (!btn) return;
+      const slug = btn.getAttribute("data-slug")!;
+      const action = btn.getAttribute("data-action");
+      const current = validItems().find((i) => i.slug === slug)?.quantity ?? 0;
+
+      if (action === "plus") setQuantity(slug, current + 1);
+      if (action === "minus") setQuantity(slug, current - 1);
+      if (action === "remove") removeFromCart(slug);
+      render();
+    });
+
+    function showError(message: string) {
+      errorEl.textContent = message;
+      errorEl.style.display = "block";
+      checkoutBtn.disabled = false;
+      checkoutBtn.textContent = "Přejít k platbě";
+    }
+
+    function loadStripeJs(): Promise<void> {
+      if ((window as any).Stripe) return Promise.resolve();
+      return new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = "https://js.stripe.com/v3/";
+        script.onload = () => resolve();
+        script.onerror = () =>
+          reject(new Error("Nepodařilo se načíst platební bránu."));
+        document.head.appendChild(script);
+      });
+    }
+
+    checkoutBtn.addEventListener("click", async () => {
+      const items = validItems();
+      if (items.length === 0) return;
+
+      checkoutBtn.disabled = true;
+      checkoutBtn.textContent = "Načítám platbu…";
+      errorEl.style.display = "none";
+
+      try {
+        const response = await fetch("/api/create-checkout-session", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            items: items.map((i) => ({ slug: i.slug, quantity: i.quantity })),
+          }),
+        });
+
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const { clientSecret, publishableKey } = await response.json();
+        if (!clientSecret || !publishableKey)
+          throw new Error("Neplatná odpověď serveru");
+
+        await loadStripeJs();
+        const stripe = (window as any).Stripe(publishableKey);
+        const checkout = await stripe.initEmbeddedCheckout({ clientSecret });
+
+        // schovej košík, ukaž platbu
+        contentEl.style.display = "none";
+        checkout.mount("#checkout");
+      } catch (err) {
+        console.error(err);
+        showError(
+          "Platbu se nepodařilo načíst. Zkuste to prosím znovu, nebo nám napište na info@bbcraft.cz.",
+        );
+      }
+    });
+
+    render();
+  </script>
+</BaseLayout>

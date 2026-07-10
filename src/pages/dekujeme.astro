@@ -1,0 +1,60 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import snek from "../assets/podminky_snek.webp";
+
+const title = "Děkujeme za objednávku";
+---
+
+<BaseLayout {title} noindex>
+  <section class="max-w-2xl mx-auto py-16 text-center">
+    <div class="w-48 md:w-64 mx-auto mb-10">
+      <Image
+        src={snek}
+        alt="Rodinný šnek BB Craft"
+        width={512}
+        densities={[1, 2]}
+        class="w-full h-auto"
+      />
+    </div>
+
+    <h1 class="text-2xl md:text-3xl font-bold uppercase blur-heading">
+      Díky za objednávku!
+    </h1>
+
+    <div class="mt-8 text-sm md:text-base leading-relaxed font-courier text-left space-y-4">
+      <p>
+        Platba k nám v pořádku dorazila a my se pouštíme do práce — šnečím
+        tempem, ale poctivě.
+      </p>
+      <p>Co bude dál:</p>
+      <ol class="list-decimal list-inside space-y-2">
+        <li>Na e-mail vám přijde potvrzení objednávky.</li>
+        <li>
+          Ozveme se, potvrdíme detaily doručení a dáme vědět, kdy bude váš
+          kousek hotový.
+        </li>
+        <li>Jakmile se balíček vydá na cestu, napíšeme vám.</li>
+      </ol>
+      <p>
+        Kdybyste cokoliv potřebovali, napište nám na
+        <a
+          href="mailto:info@bbcraft.cz"
+          class="underline hover:opacity-70 transition-opacity">info@bbcraft.cz</a
+        >.
+      </p>
+      <p>Honza a Bára<br />BB Craft</p>
+    </div>
+
+    <p class="mt-12">
+      <a href="/" class="underline hover:opacity-70 transition-opacity">
+        ← Zpět na hlavní stránku
+      </a>
+    </p>
+  </section>
+
+  <script>
+    import { clearCart } from "../scripts/cart";
+    clearCart();
+  </script>
+</BaseLayout>
