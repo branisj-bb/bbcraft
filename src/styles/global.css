@@ -17,6 +17,13 @@ body {
     0 0 18px rgba(0, 0, 0, 0.20);
 }
 
+/* stejný efekt pro SVG ikony (text-shadow na ně nefunguje) */
+.blur-icon {
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.35))
+    drop-shadow(0 0 10px rgba(0, 0, 0, 0.25))
+    drop-shadow(0 0 18px rgba(0, 0, 0, 0.2));
+}
+
 .kaz {
   top: 28%;
   bottom: 28%;
