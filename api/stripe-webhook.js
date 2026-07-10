@@ -5,9 +5,9 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // Mapování hodnot dropdownu "Způsob doručení" na lidské popisky
 const DELIVERY_LABELS = {
-  zasilkovna_adresa: "Zásilkovna – na adresu",
-  zasilkovna_zbox: "Zásilkovna – Z-BOX",
-  osobni_praha: "Osobní převzetí – Praha 1",
+  zasilkovnaAdresa: "Zásilkovna – na adresu",
+  zasilkovnaZbox: "Zásilkovna – Z-BOX",
+  osobniPraha: "Osobní převzetí – Praha 1",
 };
 
 // Vytáhne doručovací údaje ze Stripe checkout session
@@ -60,9 +60,9 @@ Jakmile budeme mít tyhle informace, začneme balit a dáme ti vědět, až se t
   if (zbox) text += `\nZ-BOX: ${zbox}`;
   if (address) text += `\nAdresa: ${address}`;
 
-  if (delivery === DELIVERY_LABELS.osobni_praha) {
+  if (delivery === DELIVERY_LABELS.osobniPraha) {
     text += `\n\nOzveme se ti a domluvíme spolu místo a čas předání.`;
-  } else if (delivery === DELIVERY_LABELS.zasilkovna_zbox && !zbox) {
+  } else if (delivery === DELIVERY_LABELS.zasilkovnaZbox && !zbox) {
     text += `\n\nJeště nám prosím odpověz na tento e-mail a napiš kód nebo adresu Z-BOXu, kam máme balíček poslat.`;
   } else {
     text += `\n\nAž se balíček vydá na cestu, dáme ti vědět.`;

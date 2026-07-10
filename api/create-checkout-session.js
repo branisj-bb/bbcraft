@@ -66,9 +66,9 @@ export default async function handler(req, res) {
           type: "dropdown",
           dropdown: {
             options: [
-              { label: "Zásilkovna – na adresu", value: "zasilkovna_adresa" },
-              { label: "Zásilkovna – Z-BOX", value: "zasilkovna_zbox" },
-              { label: "Osobní převzetí – Praha 1", value: "osobni_praha" },
+              { label: "Zásilkovna – na adresu", value: "zasilkovnaAdresa" },
+              { label: "Zásilkovna – Z-BOX", value: "zasilkovnaZbox" },
+              { label: "Osobní převzetí – Praha 1", value: "osobniPraha" },
             ],
           },
         },
